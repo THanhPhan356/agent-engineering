@@ -20,3 +20,5 @@ For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). U
 Sample across kinds and risk levels. Review artifacts and code where useful. Revert or fix through the project's procedure when evidence calls for it. Convert recurring mistakes into a lint check, invariant, harness check or updated skill. Candidate-specific rechecks, sampling details and stop conditions adapt the talks for practical use.
 
 Report the verified revision, evidence, open findings, risk and the next decision owner. [Timestamped evidence](../../research/en/evidence.md#release).
+
+For changes with observable behavior, keep the evidence somewhere reviewers can open after the session or CI run. Link actual screenshots, traces or reports, label the exact candidate tested, and report artifacts that are missing. For this repository's verification CLI, use the [smoke test and artifact instructions](../../scripts/README.md#run-the-verification-smoke-tests).

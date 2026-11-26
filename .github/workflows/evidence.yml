@@ -1,0 +1,43 @@
+name: Verification evidence
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: scripts/package-lock.json
+      - name: Install dependencies
+        run: npm ci --prefix scripts
+      - name: Install Chromium
+        run: node scripts/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Verify the checkout and import boundaries
+        run: |
+          AE_TESTED_COMMIT="$(git rev-parse HEAD)" npm --prefix scripts run smoke -- --out "$RUNNER_TEMP/agent-engineering-evidence"
+      - name: Upload reports, screenshots and traces
+        id: evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-engineering-evidence
+          path: ${{ runner.temp }}/agent-engineering-evidence/
+          if-no-files-found: warn
+      - name: Link to the evidence
+        if: ${{ !cancelled() && steps.evidence.outputs.artifact-url != '' }}
+        env:
+          EVIDENCE_URL: ${{ steps.evidence.outputs.artifact-url }}
+        run: printf '\n[Download the verification evidence](%s)\n' "$EVIDENCE_URL" >> "$GITHUB_STEP_SUMMARY"

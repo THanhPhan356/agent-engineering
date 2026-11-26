@@ -20,6 +20,14 @@ node $cli verify .agent-engineering/feature-map.json checkout --base-url http://
 
 Mỗi lượt dùng context mới và lưu `report.json`, ảnh cuối cùng và trace. Thêm `--heap` để lấy heap cuối lượt, hoặc `--video` để ghi WebM. Các bước hỗ trợ click, fill, press, expectVisible và expectText. `expectText` tìm đoạn văn bản phân biệt hoa thường trong phần tử hiển thị. Chỉ dùng dữ liệu thử trong kịch bản vì trace và video có thể chứa dữ liệu hiển thị.
 
+Mặc định mỗi thao tác trong trình duyệt chờ tối đa 8.000 ms. Dùng `--timeout-ms 30000` nếu ứng dụng tải chậm và ghi lại cấu hình khi so sánh hai lượt.
+
+## Chạy smoke test và lấy bằng chứng
+
+Sau khi cài dependency, chạy `npm --prefix scripts run smoke -- --out <đường-dẫn-tuyệt-đối-tới-thư-mục-mới>`. Nếu dùng Edge đã cài trên Windows, thêm `--channel msedge`. Bài thử dùng checkout trên localhost, chạy cùng một assertion ở trạng thái lỗi và trạng thái đã sửa, rồi kiểm tra ranh giới import TypeScript. Thư mục đầu ra giữ `summary.md`, ảnh, trace Playwright và báo cáo JSON.
+
+Trên GitHub, vào **Checks → Verification evidence** và lấy gói bằng chứng từ link trong phần tóm tắt của job. Mở trace bằng `node scripts/node_modules/playwright/cli.js show-trace <đường-dẫn-trace.zip>`. [Playwright Trace Viewer](https://playwright.dev/docs/trace-viewer)
+
 ## So hiệu năng
 
 Chạy cùng một feature với `--runs 5` trên baseline và candidate, cùng loại browser, cấu hình build, dữ liệu và máy. Dùng thư mục kết quả mới cho mỗi lần. Thêm trường `"measure": "checkout-submit"` vào feature nếu app có `performance.measure('checkout-submit', ...)`. Nếu không có, CLI dùng thời lượng từ điều hướng tới assertion cuối trong browser.

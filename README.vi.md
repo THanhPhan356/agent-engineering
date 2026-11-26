@@ -45,6 +45,10 @@ Ví dụ gọi trực tiếp `$verification-harness Tái hiện luồng checkout
 
 [Cách chạy và cấu hình mẫu](scripts/README.vi.md)
 
+[Smoke test của repo](scripts/README.vi.md#chạy-smoke-test-và-lấy-bằng-chứng) lưu ảnh, trace và JSON cho cả checkout lỗi lẫn checkout đã sửa. Workflow **Verification evidence** dẫn tới gói đó từ phần tóm tắt trên GitHub Actions.
+
 ## Nguồn và cách áp dụng
 
 [Ma trận bằng chứng](research/evidence.md) dẫn từng ý về video và timestamp. [Nhận định và giới hạn](research/appraisal.md) ghi chỗ các nguồn hội tụ, khác nhau và những tình huống đã dùng để kiểm tra skill. [Ghi chú nghiên cứu Distilly](research/merged/summary.md) tổng hợp sáu nhóm quan sát. Các bước trong skill là hướng dẫn vận hành trên các host đã nêu. Kết nối Slack, runtime ứng dụng, CI, môi trường cloud và quyền merge lấy từ dự án đang dùng.
+
+[Nghiên cứu bổ sung](research/follow-up.md) đối chiếu các nguồn về bằng chứng cho PR, bảo trì feature map, nhật ký quyết định và statechart.

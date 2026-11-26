@@ -46,6 +46,10 @@ If Antigravity on Windows reports `Access is denied` when installing from a Git 
 
 The scripts need Node.js 20 or later. Install the pinned dependencies in a local checkout or the plugin directory before running browser verification or TypeScript checks. [CLI setup and examples](scripts/README.md)
 
+The repository's [smoke tests](scripts/README.md#run-the-verification-smoke-tests) save screenshots, traces and JSON for both the broken and working checkout. The **Verification evidence** workflow links the bundle from its GitHub Actions job summary.
+
 ## Evidence
 
 [Timestamped evidence](research/en/evidence.md) maps each method to the talks. [Assessment and limitations](research/en/appraisal.md) explains the limits of the evidence and how the workflows were adapted. [Distilly research notes](research/en/README.md) cover the source tracks and checks. Each target project supplies its own fixtures, connectors, CI and release permissions.
+
+[Follow-up research](research/en/follow-up.md) covers PR evidence, feature-map upkeep, decision logs and statecharts.

@@ -20,6 +20,14 @@ node "$cli" verify .agent-engineering/feature-map.json checkout --base-url http:
 
 Each run gets a new browser context and writes a screenshot and trace. The command writes one `report.json` for the run set. Add `--heap` for a final heap snapshot or `--video` for a WebM. Supported actions are `click`, `fill`, `press`, `expectVisible` and `expectText`. The last matches a case-sensitive substring in a visible element. Use test data because artifacts can contain rendered content.
 
+The default browser timeout is 8,000 ms per operation. Use `--timeout-ms 30000` for a slower app and record the change when comparing runs.
+
+## Run the verification smoke tests
+
+From the plugin checkout, install dependencies as above and run `npm --prefix scripts run smoke -- --out /absolute/path/to/new-evidence-folder`. To use an installed Edge on Windows, add `--channel msedge`. The suite serves a local checkout fixture, runs the same assertion with and without the defect, and checks a TypeScript dependency boundary. It leaves `summary.md`, screenshots, Playwright traces and JSON reports in the output folder.
+
+On GitHub, open **Checks → Verification evidence** and follow the evidence link in the job summary. Download the bundle and open a trace with `node scripts/node_modules/playwright/cli.js show-trace /path/to/trace.zip`. [Playwright Trace Viewer](https://playwright.dev/docs/trace-viewer)
+
 ## Compare performance
 
 Run the same feature with `--runs 5` on baseline and candidate. Match the browser, build mode, fixtures and machine, and choose a new output directory each time. Add `"measure": "checkout-submit"` to the feature when the app records a matching `performance.measure`. With no named measure, the CLI times the journey from navigation through the last assertion.

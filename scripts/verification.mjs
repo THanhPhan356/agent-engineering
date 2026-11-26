@@ -7,6 +7,7 @@ import { dirname, join, resolve } from 'node:path'
 import { performance } from 'node:perf_hooks'
 
 const require = createRequire(import.meta.url)
+const defaultTimeoutMs = 8000
 const actions = new Set(['click', 'fill', 'press', 'expectText', 'expectVisible'])
 const asserts = new Set(['expectText', 'expectVisible'])
 
@@ -64,9 +65,9 @@ async function takeHeapSnapshot(session, path) {
   }
 }
 
-async function verifyRun(browser, scenario, url, directory, options) {
+async function verifyRun(browser, scenario, url, directory, options, timeoutMs) {
   const context = await browser.newContext(options.video ? { recordVideo: { dir: directory } } : {})
-  context.setDefaultTimeout(8000)
+  context.setDefaultTimeout(timeoutMs)
   const result = { passed: false, stepsPassed: 0, metricMs: null, pageErrors: [], captureErrors: [], artifacts: {} }
   let traceStarted = false
   let video
@@ -145,6 +146,10 @@ export async function verify(map, id, options) {
   if (!options['base-url'] || !options.out) throw new Error('verify needs --base-url and --out.')
   const runs = Number(options.runs)
   if (!Number.isInteger(runs) || runs < 1 || runs > 30) throw new Error('--runs must be an integer from 1 to 30.')
+  const timeoutMs = Number(options['timeout-ms'] ?? defaultTimeoutMs)
+  if (!Number.isInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 120000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 120000.')
+  }
   if (options.channel && !['msedge', 'chrome'].includes(options.channel)) throw new Error('Use --channel msedge or chrome.')
   const scenario = (await readFeatureMap(map)).find(feature => feature.id === id)
   if (!scenario) throw new Error('Unknown feature: ' + id)
@@ -168,6 +173,7 @@ export async function verify(map, id, options) {
       browser: browser.version(), channel: options.channel ?? 'chromium',
       cpuModel: cpus()[0]?.model, platform: process.platform, arch: process.arch, node: process.version,
       cpuProfile: Boolean(options.cpu), heapSnapshot: Boolean(options.heap), video: Boolean(options.video),
+      ...(timeoutMs === defaultTimeoutMs ? {} : { timeoutMs }),
     },
     runs: [],
   }
@@ -175,7 +181,7 @@ export async function verify(map, id, options) {
     for (let index = 1; index <= runs; index++) {
       const directory = join(out, 'run-' + index)
       await mkdir(directory)
-      report.runs.push(await verifyRun(browser, scenario, url, directory, options))
+      report.runs.push(await verifyRun(browser, scenario, url, directory, options, timeoutMs))
     }
   } finally {
     await browser.close()

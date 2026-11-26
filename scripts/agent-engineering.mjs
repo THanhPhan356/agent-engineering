@@ -8,7 +8,7 @@ const usage = [
   'Usage: node agent-engineering.mjs <command>',
   '  list <feature-map.json>',
   '  verify <feature-map.json> <id> --base-url <url> --out <new-directory>',
-  '       [--runs N] [--channel msedge|chrome] [--cpu] [--heap] [--video]',
+  '       [--runs N] [--timeout-ms N] [--channel msedge|chrome] [--cpu] [--heap] [--video]',
   '  compare <baseline-report.json> <candidate-report.json> [--min-percent N]',
   '  boundaries <boundaries.json>',
   '',
@@ -27,6 +27,7 @@ async function main() {
     verify: { count: 2, options: {
       'base-url': { type: 'string' }, out: { type: 'string' },
       runs: { type: 'string', default: '1' }, channel: { type: 'string' },
+      'timeout-ms': { type: 'string' },
       cpu: { type: 'boolean' }, heap: { type: 'boolean' }, video: { type: 'boolean' },
     } },
     compare: { count: 2, options: { 'min-percent': { type: 'string', default: '0' } } },
