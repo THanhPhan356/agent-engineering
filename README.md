@@ -1,6 +1,8 @@
-# Agent Engineering
+<p align="center">
+  <strong>English</strong> · <a href="README.vi.md">Tiếng Việt</a>
+</p>
 
-English · [Tiếng Việt](README.vi.md)
+<h1 align="center">Agent Engineering</h1>
 
 Eleven engineering skills and a shared executable CLI for building verification loops, improving agent-facing codebases, and deciding when to expand autonomy. The workflows draw on three public Lauren Tan videos. This independent implementation links back to [Lauren's pstack project](https://github.com/cursor/plugins/tree/main/pstack).
 

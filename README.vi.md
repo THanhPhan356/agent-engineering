@@ -1,6 +1,8 @@
-# Agent Engineering
+<p align="center">
+  <a href="README.md">English</a> · <strong>Tiếng Việt</strong>
+</p>
 
-[English](README.md) · Tiếng Việt
+<h1 align="center">Agent Engineering</h1>
 
 Bộ 11 skill và CLI để xây vòng tự kiểm chứng, đặt ràng buộc trong codebase và quyết định khi nào có đủ bằng chứng để mở rộng quyền tự chủ. Các quy trình được chắt lọc từ ba video công khai của Lauren Tan. [pstack của Lauren](https://github.com/cursor/plugins/tree/main/pstack)
 
