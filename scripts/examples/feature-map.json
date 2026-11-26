@@ -1,0 +1,14 @@
+{
+  "features": [
+    {
+      "id": "checkout",
+      "description": "Finish checkout using a seeded test cart",
+      "route": "/checkout",
+      "steps": [
+        { "action": "fill", "selector": "[name=email]", "value": "test@example.test" },
+        { "action": "click", "selector": "[data-testid=submit-order]" },
+        { "action": "expectText", "selector": "[data-testid=order-status]", "value": "Order confirmed" }
+      ]
+    }
+  ]
+}

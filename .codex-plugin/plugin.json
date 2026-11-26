@@ -1,0 +1,15 @@
+{
+  "name": "agent-engineering",
+  "version": "1.1.0",
+  "description": "Codex workflows distilled from Lauren Tan's three public talks on building and supervising coding agents.",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Engineering",
+    "shortDescription": "Build verification loops and agent-friendly codebases",
+    "longDescription": "Apply timestamped workflows from three Lauren Tan videos, including verification, performance, codebase guardrails, orchestration, and review.",
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Dùng Agent Engineering để tìm vòng verification nhỏ nhất cho repo này."
+    ]
+  }
+}
