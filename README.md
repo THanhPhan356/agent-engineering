@@ -1,33 +1,49 @@
 # Agent Engineering
 
-Plugin Codex độc lập bằng tiếng Việt, dựa trên ba video của Lauren Tan. Dùng nó để xây vòng tự kiểm chứng, đặt ràng buộc trong codebase và quyết định khi nào có đủ bằng chứng để mở rộng quyền tự chủ. Đây là bản triển khai phương pháp cho Codex của người tổng hợp. [pstack chính thức](https://github.com/cursor/plugins/tree/main/pstack)
+English · [Tiếng Việt](README.vi.md)
 
-## Chọn skill
+Eleven engineering skills and a shared executable CLI for building verification loops, improving agent-facing codebases, and deciding when to expand autonomy. The workflows draw on three public Lauren Tan videos. This independent implementation links back to [Lauren's pstack project](https://github.com/cursor/plugins/tree/main/pstack).
 
-| Skill | Dùng khi |
+## Install
+
+Choose the host you use. All four hosts load the same skills. English is the default, and requests in Vietnamese use the corresponding Vietnamese instructions.
+
+| Host | Install | Start |
+|---|---|---|
+| Codex | `codex plugin marketplace add THanhPhan356/agent-engineering`, then `codex plugin add agent-engineering@agent-engineering-marketplace` | `$engineering-workflow` |
+| Claude Code | `claude plugin marketplace add THanhPhan356/agent-engineering`, then `claude plugin install agent-engineering@agent-engineering-marketplace` | `/agent-engineering:engineering-workflow` |
+| Google Antigravity | `agy plugin install https://github.com/THanhPhan356/agent-engineering` | `/engineering-workflow` |
+| Gemini CLI | `gemini extensions install https://github.com/THanhPhan356/agent-engineering` | Ask Gemini to use `engineering-workflow` |
+
+For a local checkout, pass the checkout path to the marketplace, Antigravity or Gemini CLI install command. Claude Code also accepts `claude --plugin-dir <checkout>` for session testing. [Codex](https://developers.openai.com/plugins/build/plugins) · [Claude Code](https://code.claude.com/docs/en/plugins/create-marketplace) · [Antigravity](https://antigravity.google/docs/plugins) · [Gemini CLI](https://geminicli.com/docs/extensions/)
+
+If Antigravity on Windows reports `Access is denied` when installing from a Git checkout, export the plugin with `git archive --format=zip -o <path-to-zip> HEAD`, extract it into a fresh folder, and pass that folder to `agy plugin install`.
+
+## Choose a skill
+
+| Skill | Use it to |
 |---|---|
-| [engineering-workflow](skills/engineering-workflow/SKILL.md) | Cần tìm vòng làm việc nhỏ nhất hoặc quyết định nên đầu tư vào đâu trước |
-| [verification-harness](skills/verification-harness/SKILL.md) | Cần cho agent tự chạy ứng dụng và thu bằng chứng lặp lại được |
-| [performance-hillclimb](skills/performance-hillclimb/SKILL.md) | Cần cải thiện một metric từ baseline bằng trace và thí nghiệm nối tiếp |
-| [formal-verification](skills/formal-verification/SKILL.md) | Cần kiểm chứng invariant mà ví dụ runtime khó bao phủ |
-| [engineering-playbooks](skills/engineering-playbooks/SKILL.md) | Cần chọn cách debug, làm feature, prototype hoặc refactor theo tinh thần Poteto Mode |
-| [agent-friendly-codebase](skills/agent-friendly-codebase/SKILL.md) | Cần biến quy ước hoặc lỗi tái diễn thành đường chuẩn, type, lint hay CI |
-| [codebase-gardening](skills/codebase-gardening/SKILL.md) | Cần gom anti-pattern, ngăn lan rộng và dọn các mẫu xấu |
-| [recall-and-distill](skills/recall-and-distill/SKILL.md) | Cần lấy lại bối cảnh hoặc biến các lần sửa agent thành workflow dùng lại |
-| [coordinate-agent-loops](skills/coordinate-agent-loops/SKILL.md) | Cần nối tín hiệu từ bên ngoài với coordinator và coding agent |
-| [verify-and-ship](skills/verify-and-ship/SKILL.md) | Cần review, kiểm chứng độc lập, chuẩn bị merge hoặc kiểm tra sau merge |
-| [product-iteration](skills/product-iteration/SKILL.md) | Cần lặp thiết kế cùng nhóm trong một thread và quyết định dựa trên sản phẩm chạy được |
+| [engineering-workflow](skills/engineering-workflow/SKILL.md) | Find the smallest useful loop and decide what to invest in first |
+| [verification-harness](skills/verification-harness/SKILL.md) | Let agents run the app and capture reproducible evidence |
+| [performance-hillclimb](skills/performance-hillclimb/SKILL.md) | Improve a metric through traces and controlled iterations |
+| [formal-verification](skills/formal-verification/SKILL.md) | Check an invariant that runtime examples leave uncovered |
+| [engineering-playbooks](skills/engineering-playbooks/SKILL.md) | Pick a workflow for a bug, feature, prototype or refactor |
+| [agent-friendly-codebase](skills/agent-friendly-codebase/SKILL.md) | Encode recurring corrections in structure, types, lint or CI |
+| [codebase-gardening](skills/codebase-gardening/SKILL.md) | Group footguns, prevent new instances and remove old precedents |
+| [recall-and-distill](skills/recall-and-distill/SKILL.md) | Recover working context and turn repeated corrections into reusable workflows |
+| [coordinate-agent-loops](skills/coordinate-agent-loops/SKILL.md) | Route signals through a coordinator to coding agents |
+| [verify-and-ship](skills/verify-and-ship/SKILL.md) | Verify a candidate, assess release risk and sample shipped work |
+| [product-iteration](skills/product-iteration/SKILL.md) | Make product decisions together from a working demo |
 
-Ví dụ gọi trực tiếp `$verification-harness Tái hiện luồng checkout và lưu trace trước/sau`.
+## Run the tools
 
-## CLI cho agent
+- `list` validates a feature map and lists its scenarios.
+- `verify` drives a real web journey and records a report, screenshot and trace. CPU profiles, heap snapshots and video are optional.
+- `compare` compares measurements from matching baseline and candidate scenarios.
+- `boundaries` checks TypeScript runtime dependencies, including paths through intermediate modules.
 
-- `list` và `verify` đọc feature map, chạy luồng thật bằng Playwright và lưu kết quả, screenshot, trace. Có thể thu CPU profile, heap snapshot và video.
-- `compare` đối chiếu timing baseline và candidate của cùng kịch bản.
-- `boundaries` kiểm tra import runtime trực tiếp và qua các module trung gian trong dự án TypeScript.
+The scripts need Node.js 20 or later. Install the pinned dependencies in a local checkout or the plugin directory before running browser verification or TypeScript checks. [CLI setup and examples](scripts/README.md)
 
-[Cách chạy và cấu hình mẫu](scripts/README.md)
+## Evidence
 
-## Nguồn và cách áp dụng
-
-[Ma trận bằng chứng](research/evidence.md) dẫn từng ý về video và timestamp. [Nhận định và giới hạn](research/appraisal.md) ghi chỗ các nguồn hội tụ, khác nhau và những tình huống đã dùng để kiểm tra skill. [Ghi chú nghiên cứu Distilly](research/merged/summary.md) tổng hợp sáu nhóm quan sát. Các bước trong skill là hướng dẫn vận hành cho Codex. Kết nối Slack, runtime ứng dụng, CI, môi trường cloud và quyền merge lấy từ dự án đang dùng.
+[Timestamped evidence](research/en/evidence.md) maps each method to the talks. [Assessment and limitations](research/en/appraisal.md) explains the limits of the evidence and how the workflows were adapted. [Distilly research notes](research/en/README.md) cover the source tracks and checks. Each target project supplies its own fixtures, connectors, CI and release permissions.

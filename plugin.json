@@ -1,18 +1,24 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "agent-engineering",
-  "version": "1.1.0",
-  "description": "Codex workflows distilled from Lauren Tan's three public talks on building and supervising coding agents.",
-  "keywords": ["agent-verification", "engineering-workflows", "code-review"],
+  "version": "1.2.0",
+  "description": "Agent skills and executable tools for reproducible verification, performance experiments, and codebase guardrails.",
+  "repository": "https://github.com/THanhPhan356/agent-engineering",
+  "keywords": [
+    "agent-verification",
+    "engineering-workflows",
+    "code-review"
+  ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Agent Engineering",
-        "shortDescription": "Build verification loops and agent-friendly codebases",
-        "longDescription": "Apply timestamped workflows from three Lauren Tan videos, including verification, performance, codebase guardrails, orchestration, and review.",
+        "shortDescription": "Verify changes and build agent-friendly codebases",
+        "longDescription": "Use 11 bilingual skills and a shared CLI for verification, profiling, dependency boundaries, and review.",
         "category": "Productivity",
         "defaultPrompt": [
-          "Dùng Agent Engineering để tìm vòng verification nhỏ nhất cho repo này."
+          "Find the smallest useful verification loop for this repository.",
+          "Tìm vòng verification nhỏ nhất cho repo này."
         ]
       }
     }

@@ -1,20 +1,22 @@
 ---
 name: verify-and-ship
-description: "Review hoặc chuẩn bị ship bằng kiểm chứng độc lập kiểu Interrogate/Full Autopilot, phân loại one-way door, lấy mẫu PR đã merge và sửa môi trường."
+description: "Verify a candidate, use independent reviewers selectively, assess one-way doors, and sample shipped PRs. Dùng để review, chuẩn bị merge và audit sau merge."
 ---
 
-# Xác minh, review và ship
+For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
 
-## Trước khi ship
+# Verify, review and ship
 
-1. Phân loại khả năng hoàn tác, phạm vi ảnh hưởng, điều kiện xác minh và độ trưởng thành harness. Với migration nguy hiểm, quyền truy cập, dữ liệu, hạ tầng hoặc quyết định khó đảo ngược, trả bằng chứng cho người có trách nhiệm. Với đổi nhỏ và đảo ngược được, dùng phạm vi hành động người dùng và repo đã cấp.
-2. Kiểm tra commit/candidate đang đề xuất. Chạy check bắt buộc và đường dùng thật. Với thay đổi xứng đáng, dùng verifier độc lập hoặc các model family khác nếu host có sẵn. Giao cho verifier đường chính, edge case có căn cứ và kiểm tra hành vi lân cận. Fuzz trong môi trường test theo nghĩa Lauren mô tả là dùng app linh hoạt như user để tìm lỗi, kết hợp input variations khi phù hợp.
-3. Mỗi finding cần tình huống, dấu hiệu, cách tái hiện và tác động tới mục tiêu. Bỏ yêu cầu chung chung, vấn đề ngoài intent và cảm nhận thiếu bằng chứng. Khi sửa finding, xác minh lại candidate mới. Tăng số lượt review theo hậu quả và chất lượng tín hiệu, vì nhiều reviewer có thể tạo overfitting và tốn token.
-4. Giữ quyền merge, publish và deploy theo lệnh người dùng và quy tắc repo. Full Autopilot là chế độ nâng cao để mô phỏng hoặc triển khai khi đã có phạm vi rõ, checks đáng tin, khả năng phục hồi và quyền phù hợp. Trước khi đủ điều kiện, bàn giao bản sẵn sàng review.
-5. Với lượt chạy được giao để làm qua đêm, ghi trước điều kiện xong có thể chạy kiểm tra, quyền đã cấp, giới hạn thời gian/chi phí, điểm dừng và cách tiếp tục. Dùng worktree hay cloud checkout tách biệt khi host có sẵn. Lưu từng quyết định, candidate, lệnh kiểm tra, kết quả và artifact để audit sau. Nếu thấy việc không còn tiến triển, lưu trạng thái và nguyên nhân.
+## Before release
 
-## Sau khi ship
+1. Classify reversibility, impact, preconditions and harness maturity. For high-impact migrations, permissions, data and infrastructure changes, give the evidence to the responsible person. Work within the user's and repository's authority for reversible changes.
+2. Run required checks and the real user journey on the proposed candidate. For work that merits it, use independent verifiers or other model families if supported. Give them the main path, grounded edge cases and adjacent behavior to check. In Lauren's description, fuzzing includes actively using the application in the test environment to look for regressions.
+3. Keep findings with a scenario, observable issue, reproduction and impact on intent. Filter out preferences and unsupported findings. Rerun verification on a changed candidate. Scale review with consequence and signal because review can overfit and consume substantial tokens.
+4. Use Full Autopilot as an advanced workflow when scope, checks, recovery and authority are clear. Follow the repository's merge, publishing and deployment rules. Until the conditions hold, return the candidate for review.
+5. For an authorized unattended run, write a verifiable finish condition, permissions, limits, exit conditions and how to resume. Use a separate worktree or cloud checkout where available. Log decisions, candidate revisions, checks and artifacts. When progress stalls, preserve state and explain the blocker.
 
-Lấy mẫu commit/PR qua các nhóm rủi ro và loại thay đổi, kiểm tra cả artifact lẫn code khi cần. Nếu có phát hiện, đánh giá rollback hay sửa theo cơ chế dự án. Nếu lỗi lặp qua nhiều PR, nâng lên lint, invariant, harness hoặc cập nhật skill. Mức lấy mẫu, cửa dừng và yêu cầu xác minh đúng candidate là triển khai cho Codex.
+## After shipping
 
-Bàn giao trạng thái kiểm tra, commit đã thử, evidence, finding còn mở, mức rủi ro và người quyết định kế tiếp. [Nguồn và timestamp](../../research/evidence.md#release).
+Sample across kinds and risk levels. Review artifacts and code where useful. Revert or fix through the project's procedure when evidence calls for it. Convert recurring mistakes into a lint check, invariant, harness check or updated skill. Candidate-specific rechecks, sampling details and stop conditions adapt the talks for practical use.
+
+Report the verified revision, evidence, open findings, risk and the next decision owner. [Timestamped evidence](../../research/en/evidence.md#release).

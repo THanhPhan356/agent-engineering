@@ -1,54 +1,47 @@
 ---
 name: engineering-workflow
-description: "Áp dụng phương pháp làm việc của Lauren Tan: tạo vòng verification nhỏ nhất, sửa môi trường để agent đáng tin và chọn quy trình trước khi tăng mức tự chủ."
+description: "Apply Lauren Tan's engineering workflow: build a minimal verification loop, improve the environment, and choose what to do before expanding autonomy. Dùng để tìm vòng verification và điểm nghẽn trong repo."
 ---
+
+For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
 
 # Agent Engineering
 
-Dùng Work Skill này khi cần áp dụng cách Lauren xây môi trường để coding agent có thể tự sửa và tự kiểm chứng. Đầu ra là một lựa chọn cụ thể cho repo người dùng hoặc một thay đổi đã có bằng chứng.
+Apply these methods when coding agents need to make and verify changes themselves. Return a concrete recommendation for the repository or a verified change.
 
 ## Mental models
 
-- **Vòng nhỏ nhất.** Chọn một đường người dùng, cho agent tự chạy và quan sát. Từ đó mới cho nó lặp sửa, đo và kiểm chứng.
-- **Codebase là bộ nhớ.** Agent mở đâu thường sao chép mẫu ở đó. Viết lại đường chuẩn và ràng buộc data/API trước, tiếp đến lint/compiler/CI, rồi dùng rule hay skill cho phần cần ngữ cảnh.
-- **Đầu tư vào trust trước khi tăng quy mô.** Khi việc phải trông giảm nhờ evidence, giao phạm vi rộng hơn theo khả năng kiểm chứng và hoàn tác. Người vận hành vẫn chịu trách nhiệm với thành phẩm.
-- **Phân bổ determinism.** Chuyển thao tác lặp được sang CLI/codemod, dùng agent ở nơi cần suy luận, dùng người ở nơi cần mục tiêu, taste hoặc quyền quyết định.
+- **The smallest loop.** Pick one real user journey and give the agent a way to run it and observe the result. Then let it iterate on fixes and measurements.
+- **The codebase is memory.** Agents extend what they see. Improve the canonical path and data/API constraints first. Use linting, compiler checks and CI next, then rules and skills for decisions that need context.
+- **Earn trust before scaling.** Use repeated evidence and reversibility to decide how much autonomy to grant. The operator remains responsible for the outcome.
+- **Use deterministic tools.** Put repeatable steps in a CLI or codemod. Leave reasoning to agents and goals, product judgment and approval to the people responsible for them.
 
-## Agentic protocol
+## Procedure
 
-1. Xác định intent, hành vi đích, điều kiện khách quan có thể kiểm và quyền đã được cấp.
-2. Tìm công cụ chạy repo và phép đo hiện có. Nếu người dùng đang phải trực tiếp chạy app hoặc cung cấp ảnh cho agent, ưu tiên đóng một vòng verification trước.
-3. Định tuyến theo bottleneck. Đọc skill con trước khi làm. Chỉ phối hợp nhiều skill khi phụ thuộc thực tế cần chúng.
-4. Chạy một lượt có bằng chứng. Ghi điều kiện, trạng thái, artifact và người quyết định tiếp theo. Nếu thấy lỗi được lặp lại, chuyển correction vào lớp hiệu lực cao nhất.
-5. Mở rộng sang nhiều tác vụ, nguồn sự kiện và teamwork khi vòng đã có dấu hiệu lặp lại ổn định. Đối với thay đổi khó hoàn tác, giữ người duyệt và nêu giới hạn xác minh.
+1. Establish intent, target behavior, a checkable finish condition and the available authority.
+2. Find the repository's existing run command and measurements. When a human is still running the app or fetching screenshots, close a verification loop for one journey first.
+3. Pick the skill that addresses the bottleneck. Read its instructions before proceeding and combine skills when the task actually needs them.
+4. Run one evidence-producing iteration. Record conditions, outcome, artifacts and the next decision owner. Move recurring corrections to the strongest practical layer.
+5. Expand to parallel tasks, event sources and collaborative workflows as the loop earns trust. For hard-to-reverse changes, keep the decision with a human and state the limits of verification.
 
-| Nút thắt | Skill dùng |
+| Bottleneck | Skill |
 |---|---|
-| Agent không tự điều khiển được app hoặc đọc báo cáo thiếu bối cảnh | [verification-harness](../verification-harness/SKILL.md) |
-| Thấy giật, chậm, leak hoặc muốn cải thiện metric | [performance-hillclimb](../performance-hillclimb/SKILL.md) |
-| Cần kiểm tra invariant qua nhiều trạng thái, retry hoặc tương tác | [formal-verification](../formal-verification/SKILL.md) |
-| Cần fix, feature, prototype hoặc refactor có bằng chứng | [engineering-playbooks](../engineering-playbooks/SKILL.md) |
-| Trượt cùng một quy tắc khi sửa app | [agent-friendly-codebase](../agent-friendly-codebase/SKILL.md) |
-| Nhiều dấu hiệu cùng họ, chưa biết có chung nguyên nhân | [codebase-gardening](../codebase-gardening/SKILL.md) |
-| Mất bối cảnh khi đổi phiên hoặc người dùng cứ sửa cùng một lỗi | [recall-and-distill](../recall-and-distill/SKILL.md) |
-| Con người còn sao chép các báo cáo giữa công cụ và coding agent | [coordinate-agent-loops](../coordinate-agent-loops/SKILL.md) |
-| Cần audit, dùng verifier độc lập hoặc đánh giá việc có nên tự merge | [verify-and-ship](../verify-and-ship/SKILL.md) |
-| PM, designer và engineer cần chốt sản phẩm dựa trên bản chạy được | [product-iteration](../product-iteration/SKILL.md) |
+| Agents cannot drive the app or interpret a vague report | [verification-harness](../verification-harness/SKILL.md) |
+| Jank, slowness, a suspected leak, or a metric needs improvement | [performance-hillclimb](../performance-hillclimb/SKILL.md) |
+| An invariant spans retries, states or interactions | [formal-verification](../formal-verification/SKILL.md) |
+| A bug fix, feature, prototype or refactor needs evidence | [engineering-playbooks](../engineering-playbooks/SKILL.md) |
+| Changes repeatedly violate the same rule | [agent-friendly-codebase](../agent-friendly-codebase/SKILL.md) |
+| Several symptoms may share a root cause | [codebase-gardening](../codebase-gardening/SKILL.md) |
+| Context disappears between sessions or corrections keep recurring | [recall-and-distill](../recall-and-distill/SKILL.md) |
+| A human keeps transferring reports from other tools to coding agents | [coordinate-agent-loops](../coordinate-agent-loops/SKILL.md) |
+| A candidate needs an independent verifier or a merge decision | [verify-and-ship](../verify-and-ship/SKILL.md) |
+| A PM, designer and engineer need to decide from a running prototype | [product-iteration](../product-iteration/SKILL.md) |
 
 ## Evidence and limitations
 
-- **Expression DNA.** Michelin kitchen giải thích trách nhiệm, đào tạo và công cụ. Thuật ngữ kỹ thuật nên làm rõ phải quan sát hay quyết định gì.
-- **Tension.** Tăng tốc và giảm chi phí review phải cân với chất lượng thực tế. Chạy app chứng minh được hành vi đã thử. Chất lượng cấu trúc và rủi ro phát hành có lớp kiểm tra riêng.
-- **Honest boundaries.** Các ví dụ ControlGlass, Dune nội bộ và quy trình Grok Bot không cho ta toàn bộ cách triển khai. Không dự báo throughput từ số PR Lauren tự báo.
-- **Intellectual genealogy.** AutoResearch gợi ý hill climb. Netflix gợi ý trao context. GStack gợi ý xây bộ công cụ cá nhân. Matt Pocock đóng góp ví dụ về phrasing và các skill ghép được.
+- The Michelin kitchen analogy illustrates training, tools and responsibility for the end result. Use domain terms that clarify what to observe or decide.
+- A runtime test supports the behavior exercised. Code structure, performance and release risk call for their own evidence and checks.
+- The public material describes ControlGlass, Dune and Grok Bot workflows at a high level. Treat PR counts as anecdotes about the reported environment.
+- Lauren credits Karpathy's AutoResearch for hill climbing, Netflix for managing through context, and GStack and Matt Pocock's work for ideas she adapted to her own toolkit.
 
-[Ma trận timestamp](../../research/evidence.md) · [Nhận định](../../research/appraisal.md)
-
-- [Bài nói gốc của Lauren](https://x.com/poteto/status/2102050467505430555)
-- [Video cùng Matt Pocock](https://www.youtube.com/watch?v=MN9dGgmLyso)
-- [YC Lightcone](https://www.youtube.com/watch?v=y1-9yeYLJUo)
-- [pstack của Lauren](https://github.com/cursor/plugins/blob/main/pstack/README.md)
-- [Control skill công khai](https://github.com/cursor/plugins/blob/main/pstack/skills/create-verification-skill/SKILL.md)
-- [Transcript có người nói của tập YC](https://ulisten.ai/channels/y-combinator/the-rise-of-ai-coworkers_y1-9yeYLJUo/transcript)
-
-If the question is outside the recorded responsibilities or the source material is insufficient, state the gap. Do not fabricate missing information or refer to Persona.
+[Timestamped evidence](../../research/en/evidence.md) · [Assessment](../../research/en/appraisal.md)

@@ -1,0 +1,5 @@
+{
+  "name": "agent-engineering",
+  "version": "1.2.0",
+  "description": "Agent skills and executable tools for reproducible verification, performance experiments, and codebase guardrails."
+}

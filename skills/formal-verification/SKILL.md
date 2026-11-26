@@ -1,15 +1,17 @@
 ---
 name: formal-verification
-description: "Đánh giá một invariant khó bao phủ bằng runtime test, như retry, state machine hay khả năng lặp thao tác. Chọn formal model/check phù hợp và ghi rõ phạm vi chứng minh."
+description: "Check a targeted invariant for retries, state machines, or concurrency when runtime examples leave important states uncovered. Dùng để kiểm chứng invariant khó bao phủ bằng test."
 ---
 
-# Khi nào cần formal verification
+For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
 
-Thử phép đo hoặc kiểm tra runtime nếu nó bao phủ quyết định cần đưa ra. Cân nhắc mô hình hóa khi nhiều trạng thái/tương tác có thể đi sai, đặc biệt với invariant phải giữ qua nhiều bước hoặc nhiều tác nhân. Lauren đặt formal verification ở đầu khó hơn của phổ verification và để ngỏ khả năng áp dụng rộng.
+# Choose a formal check when it earns its cost
 
-1. Viết đúng một invariant ở ngôn ngữ nghiệp vụ, kèm ví dụ pass/fail, trạng thái khởi tạo và giả định môi trường. Ví dụ, cùng một khóa idempotency chỉ ghi nhận một đơn hàng dù retry sau timeout.
-2. Chọn đúng phần state machine/data model hoặc chứng minh cần thiết. Dùng công cụ đội đã hỗ trợ, ví dụ TLA+ cho chuyển trạng thái hoặc Lean khi cần chứng minh tính chất phù hợp. Mô tả abstraction, event/thao tác và những gì bị bỏ ngoài mô hình.
-3. Chạy checker hoặc proof. Giữ counterexample và đường đi ngắn có thể hiểu được, sau đó tìm cách tái hiện trong triển khai. Báo rõ tool, giới hạn khám phá hoặc giả định chứng minh, phiên bản mã và kết quả thực tế. Nếu không chạy được, trả mô hình dự kiến và ghi trạng thái chưa kiểm chứng.
-4. Nối invariant với test runtime hoặc check của repo để phát hiện drift giữa mô hình và mã. Giữ người có quyền quyết định trong các thay đổi khó hoàn tác.
+Start with an empirical check if it can answer the decision. Consider modeling when a high-value invariant has to hold across multiple states, steps or actors and concrete runs leave significant gaps.
 
-Quy trình trên là cách áp dụng cho Codex. Các nguồn đưa Lean/TLA+ như ví dụ và nói về hướng kết hợp code với proof. Chúng chưa đưa ra lời giải chung cho thay đổi hệ trọng hoặc một chứng minh production cụ thể. [Nguồn và timestamp](../../research/evidence.md#formal).
+1. State one invariant in domain terms, with pass/fail examples, initial state and environment assumptions. For example, retrying an order with the same idempotency key after a timeout creates at most one order.
+2. Model the part of the state machine or data structure necessary for that invariant. Prefer a tool the team supports, such as TLA+ for transitions or Lean for a suitable proof. Record the abstraction and what lies outside it.
+3. Run the checker or proof. Preserve a readable counterexample and use it to probe the implementation. Report the tool, code revision, explored bounds or proof assumptions and actual result. Say when the model has yet to run.
+4. Tie the invariant to a runtime test or repository check to detect drift between model and code. Keep hard-to-reverse decisions with the responsible person.
+
+Lauren placed formal methods at a more demanding end of verification and described possible roles for Lean, TLA+ and code-with-proof systems. This procedure is a practical adaptation. The talks leave broad applicability and production invariants open. [Timestamped evidence](../../research/en/evidence.md#formal).

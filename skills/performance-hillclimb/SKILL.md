@@ -1,18 +1,20 @@
 ---
 name: performance-hillclimb
-description: "Tối ưu hiệu năng theo vòng hill climb mà Lauren Tan mô tả: trace, baseline, giả thuyết, chỉnh một biến và đo lại dưới cùng workload."
+description: "Improve performance with an empirical hill-climb loop: choose a metric, trace, establish a baseline, change one variable, and remeasure. Dùng để tối ưu theo baseline và trace."
 ---
 
-# Hill climb theo bằng chứng
+For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
 
-1. Đóng băng kịch bản người dùng, fixture, môi trường, chế độ build và cách thu trace. Chọn một metric dẫn đường, chiều tốt hơn và endpoint người dùng quan tâm. Ghi ràng buộc correctness và các metric không được suy giảm.
-2. Chạy baseline đủ để thấy độ dao động. Ghi commit, thiết lập, các lượt chạy và thước đo tổng hợp phù hợp. Nếu tín hiệu chìm trong nhiễu, sửa harness hoặc kịch bản trước.
-3. Từ trace, CPU profile, heap snapshot hoặc instrumentation, nêu một hotspot, giả thuyết có thể bác bỏ và thay đổi nhỏ nhất để kiểm tra. Ghi kết quả dự kiến.
-4. Áp dụng một thay đổi, chạy lại đúng kịch bản cũ, kiểm tra hành vi và so với baseline đã ghi. Giữ thay đổi khi lợi ích tái hiện, vượt phần nhiễu có liên quan và nằm trong ràng buộc. Hoàn tác riêng thay đổi thử nghiệm nếu nó thua hoặc làm hỏng guardrail. Đưa thay đổi đã chấp nhận thành baseline tiếp theo.
-5. Dừng khi đạt mục tiêu, hết ngân sách thực thi, không còn giả thuyết đáng thử hoặc harness hết khả năng phân biệt. Chỉ báo cáo mức cải thiện dựa trên so sánh cùng điều kiện.
+# Hill climb with evidence
 
-Bàn giao metric, câu hỏi người dùng, baseline và kết quả cuối, độ dao động hoặc giới hạn số lần đo, trace trước/sau và sổ từng thử nghiệm. Phân biệt cải thiện microbenchmark với trải nghiệm end-to-end. Giữ một thay đổi có thể quy kết cho mỗi lượt đo.
+1. Fix the user journey, fixture, environment, build mode and trace capture. Choose one primary metric, its direction, and the user-visible outcome it represents. Record correctness requirements and metrics that must stay within bounds.
+2. Repeat the baseline enough to observe variation. Record the commit, environment, individual runs and a suitable summary statistic. Improve the test setup first if noise hides the signal.
+3. Use a trace, profile, heap snapshot or instrumentation to identify a hotspot. Write down one falsifiable hypothesis, the smallest useful change and its expected effect.
+4. Make one change and rerun the same scenario. Keep it when the gain repeats, exceeds relevant variation and preserves guardrails. Undo an unsuccessful experimental change without touching unrelated work. Use the accepted result as the next baseline.
+5. Stop when the target is reached, the budget is exhausted, no credible hypothesis remains, or the test cannot resolve a difference. Report gains only under comparable conditions.
 
-Với một feature map web, chạy [CLI](../../scripts/README.md) `verify --runs 5` trên baseline và candidate cùng cấu hình. Ưu tiên `performance.measure` có tên nếu app đã ghi metric. `compare` đọc hai `report.json`, đối chiếu kịch bản và runtime đã ghi, rồi trả median, độ lệch tuyệt đối trung vị và verdict. Đọc trace và các guardrail correctness trước khi giữ thay đổi.
+Deliver the question, metric, baseline, final result, uncertainty or measurement limits, traces and an experiment log. Distinguish a microbenchmark from user-visible performance.
 
-Cách ghi baseline và ngân sách là triển khai Codex của nguyên lý loop có điểm số. Trong nguồn, Lauren nói cô lấy cảm hứng từ AutoResearch của Andrej Karpathy cho vòng hill climb. [Nguồn và timestamp](../../research/evidence.md#performance).
+For a web feature map, use `verify --runs 5` on baseline and candidate with matching settings. Prefer a named `performance.measure` when available. Run `compare` on the two `report.json` files to check scenario and environment and report median, MAD and a verdict. Inspect the trace and correctness guardrails before keeping the change. [CLI usage](../../scripts/README.md)
+
+The comparison and budget choices are this plugin's implementation. Lauren credits Karpathy's AutoResearch as inspiration for the scored loop. [Timestamped evidence](../../research/en/evidence.md#performance).

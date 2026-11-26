@@ -1,14 +1,16 @@
 ---
 name: product-iteration
-description: "Lặp feature có PM, designer, engineer và agent cùng tham gia như demo Slack của Lauren Tan. Dùng screenshot/video chạy thật và giữ quyết định UX cho con người."
+description: "Run a shared product feedback loop with a working prototype, screenshots or video, and explicit human ownership of UX decisions. Dùng để lặp feature dựa trên demo cho cả nhóm."
 ---
 
-# Lặp feature trong một nơi chung
+For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
 
-1. Từ báo cáo hay ý tưởng, ghi người dùng nào gặp vấn đề, kết quả mong muốn và câu hỏi sản phẩm cần quyết. Giữ yêu cầu và phản hồi trong thread hoặc artifact nhóm đã dùng. Khi lời góp ý mâu thuẫn, xác nhận người chịu trách nhiệm quyết định.
-2. Cho agent lấy bối cảnh được phép, dựng lát cắt trong môi trường chạy cô lập và gửi screenshot/video thể hiện đường đi thật. Nếu cần xác nhận quy mô, lấy số liệu từ nguồn dữ liệu đúng quyền. Ghi rõ mỗi artifact thể hiện hành vi nào.
-3. Đưa artifact cho các bên ở cùng thread. Thu một vòng phản hồi, chốt intent và những điều phải giữ, sau đó lặp trên phiên bản tiếp theo. Có thể kiểm tra code bằng quy trình phù hợp với rủi ro. Cảnh UI trong video là đầu vào thảo luận về trải nghiệm.
-4. Đánh giá thay đổi theo mục tiêu và sự nhất quán của sản phẩm. Khi chạm luồng cốt lõi hoặc thói quen người dùng, có người duyệt sản phẩm và thời gian thử phù hợp trước khi ship. Tách sửa bug nhỏ đã tái hiện khỏi quyết định thay đổi UX. Không dùng việc agent hoàn thành được để quyết định phát hành.
-5. Chốt bằng bản demo, acceptance đã kiểm chứng, quyết định UX, đường dẫn issue/PR nếu có và phần cần tiếp tục. Giữ quan sát phiên bản sau phản hồi để có thể so trước/sau.
+# Iterate on a feature together
 
-Lauren minh họa bằng một feature hoàn thành trong thread Slack dài khoảng 200 tin nhắn với đồng nghiệp và PM, trong khi agent VM gửi screenshot/video. Dogfooding cụ thể của nhóm do Roman Ugarte mô tả. Lauren bổ sung vai trò của taste và việc thiết kế có chủ đích. [Nguồn và timestamp](../../research/evidence.md#product).
+1. Record who has the problem, the intended outcome and the product question to settle. Keep requirements and feedback in the team's thread or artifact. Clarify the decision owner if guidance conflicts.
+2. Let the agent fetch permitted context and build a working slice in an isolated environment. Return screenshots or video from the real path. Where needed, ask the authorized data source to validate impact. Say which behavior each artifact shows.
+3. Share the artifact with the team in the same thread. Collect one round of feedback, agree on the intent and constraints, and iterate. Use code review proportionate to risk. Treat the demo as evidence for UX discussion.
+4. Evaluate consistency with the product. For changes to core experiences and habits, include human product review and a suitable trial before shipping. Handle a reproducible small fix independently from a product decision.
+5. Close with the demo, tested acceptance, UX decision, issue/PR link where applicable, and the remaining work. Keep the version after feedback available for comparison.
+
+Lauren recounts a feature developed with colleagues and a PM in a Slack thread of around 200 messages, with screenshots and video from an agent's VM. Roman Ugarte describes their dogfooding practice. Lauren emphasizes taste and intentional design. [Timestamped evidence](../../research/en/evidence.md#product).

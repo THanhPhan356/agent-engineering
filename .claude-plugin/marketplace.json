@@ -1,0 +1,14 @@
+{
+  "name": "agent-engineering-marketplace",
+  "owner": {
+    "name": "THanhPhan356"
+  },
+  "plugins": [
+    {
+      "name": "agent-engineering",
+      "source": "./",
+      "description": "Agent skills and executable tools for reproducible verification, performance experiments, and codebase guardrails."
+    }
+  ],
+  "description": "Install the bilingual Agent Engineering plugin and its shared verification workflows."
+}
