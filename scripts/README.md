@@ -1,39 +1,41 @@
-# CLI cho Agent Engineering
+# Agent Engineering CLI
 
-Chạy bằng Node.js 20 trở lên. Repo đang kiểm tra giữ cấu hình, fixture và lệnh khởi động app. CLI chạy kịch bản lặp lại được từ cấu hình đó.
+English · [Tiếng Việt](README.vi.md)
 
-## Cài dependency cho một bản sao mới
+The CLI requires Node.js 20 or later. The target repository supplies the feature map, test fixtures and the command that starts its app.
 
-Từ thư mục plugin, chạy `npm ci --prefix scripts`. Dùng Chromium của Playwright sau khi chạy `node scripts/node_modules/playwright/cli.js install chromium` hoặc truyền `--channel msedge` hay `--channel chrome` cho browser đã cài. Nếu muốn quay video, chạy `node scripts/node_modules/playwright/cli.js install ffmpeg` một lần. Lệnh `list` và `compare` chạy với Node.js thuần.
+## Install dependencies
 
-## Kiểm chứng một luồng web
+From a local checkout or the installed plugin directory, run `npm ci --prefix scripts`. For browser automation, either run `node scripts/node_modules/playwright/cli.js install chromium` or pass `--channel msedge` or `--channel chrome` to use an installed browser. For video recording, run `node scripts/node_modules/playwright/cli.js install ffmpeg` once. `list` and `compare` only require Node.js.
 
-Tạo bản sao [feature map](examples/feature-map.json) trong repo và đổi route, selector, dữ liệu thử, assertion theo ứng dụng thật. Khởi động app test theo cách thông thường. Từ terminal, gọi CLI bằng đường dẫn tuyệt đối nếu đang đứng ngoài thư mục plugin.
+## Verify a web journey
 
-```powershell
-$cli = "C:/path/to/agent-engineering/scripts/agent-engineering.mjs"
-node $cli list .agent-engineering/feature-map.json
-node $cli verify .agent-engineering/feature-map.json checkout --base-url http://localhost:3000 --out .agent-engineering/evidence/checkout-after --channel msedge --cpu
+Copy the [feature-map example](examples/feature-map.json) to the target repository. Change the route, selectors, fixture data and assertion to match the real app, then start the app in a test environment. Run these commands from the target project. Set `cli` to an absolute path to the plugin's script.
+
+```bash
+cli="/path/to/agent-engineering/scripts/agent-engineering.mjs"
+node "$cli" list .agent-engineering/feature-map.json
+node "$cli" verify .agent-engineering/feature-map.json checkout --base-url http://localhost:3000 --out .agent-engineering/evidence/checkout-after --channel chrome --cpu
 ```
 
-Mỗi lượt dùng context mới và lưu `report.json`, ảnh cuối cùng và trace. Thêm `--heap` để lấy heap cuối lượt, hoặc `--video` để ghi WebM. Các bước hỗ trợ click, fill, press, expectVisible và expectText. `expectText` tìm đoạn văn bản phân biệt hoa thường trong phần tử hiển thị. Chỉ dùng dữ liệu thử trong kịch bản vì trace và video có thể chứa dữ liệu hiển thị.
+Each run gets a new browser context and writes a screenshot and trace. The command writes one `report.json` for the run set. Add `--heap` for a final heap snapshot or `--video` for a WebM. Supported actions are `click`, `fill`, `press`, `expectVisible` and `expectText`. The last matches a case-sensitive substring in a visible element. Use test data because artifacts can contain rendered content.
 
-## So hiệu năng
+## Compare performance
 
-Chạy cùng một feature với `--runs 5` trên baseline và candidate, cùng loại browser, cấu hình build, dữ liệu và máy. Dùng thư mục kết quả mới cho mỗi lần. Thêm trường `"measure": "checkout-submit"` vào feature nếu app có `performance.measure('checkout-submit', ...)`. Nếu không có, CLI dùng thời lượng từ điều hướng tới assertion cuối trong browser.
+Run the same feature with `--runs 5` on baseline and candidate. Match the browser, build mode, fixtures and machine, and choose a new output directory each time. Add `"measure": "checkout-submit"` to the feature when the app records a matching `performance.measure`. With no named measure, the CLI times the journey from navigation through the last assertion.
 
-```powershell
-node $cli compare .agent-engineering/evidence/baseline/report.json .agent-engineering/evidence/candidate/report.json --min-percent 5
+```bash
+node "$cli" compare .agent-engineering/evidence/baseline/report.json .agent-engineering/evidence/candidate/report.json --min-percent 5
 ```
 
-Lệnh trả median, MAD và verdict `improved`, `regressed` hoặc `inconclusive`. Ngưỡng lấy giá trị lớn nhất giữa tỷ lệ cải thiện tối thiểu và hai lần MAD của mỗi phía. Đây là ngưỡng thực hành để đọc kết quả, cùng với trace và điều kiện thực tế.
+The verdict is `improved`, `regressed` or `inconclusive`. The threshold is the largest of the minimum percentage and twice the median absolute deviation (MAD) on either side, expressed in milliseconds. Use the verdict with traces and knowledge of the test conditions.
 
-## Soát ranh giới import
+## Check import boundaries
 
-Đặt bản sao [config mẫu](examples/boundaries.json) ở gốc dự án và sửa đường dẫn.
+Copy the [boundary example](examples/boundaries.json) to the project root and set its paths.
 
-```powershell
-node $cli boundaries agent-boundaries.json
+```bash
+node "$cli" boundaries agent-boundaries.json
 ```
 
-Lệnh dùng TypeScript compiler để resolve module theo `tsconfig` và trả một chuỗi phụ thuộc cho mỗi module chạm ranh giới cấm. Nó theo import, re-export, `import()` hoặc `require()` có tên literal trong chương trình TypeScript. Import chỉ chứa type, tên module tính ở runtime và alias riêng của bundler nằm ngoài phạm vi check. Mã thoát `1` nghĩa là assertion/thu artifact thất bại hoặc có vi phạm import. Mã `2` nghĩa là lỗi cấu hình, dependency hoặc môi trường.
+The checker resolves imports using the TypeScript configuration and prints one dependency chain per file crossing a forbidden boundary. It follows imports, re-exports and literal `import()` or `require()` calls in the TypeScript program. Type-only imports, computed module names and bundler-only aliases are outside its coverage. Exit code `1` means verification failed or a boundary was violated. Exit code `2` means a setup, dependency or configuration error.

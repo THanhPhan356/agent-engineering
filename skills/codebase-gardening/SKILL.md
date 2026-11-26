@@ -1,20 +1,22 @@
 ---
 name: codebase-gardening
-description: "Thiết lập công việc gardener kiểu Lauren Tan: quét anti-pattern, gom vào buffer, nhóm nguyên nhân, chặn lỗi mới và dọn các mẫu cũ."
+description: "Scan for recurring codebase footguns, buffer findings, group root causes, prevent growth and clean up examples agents copy. Dùng để gom và xử lý anti-pattern lặp lại."
 ---
 
-# Gardening cho codebase
+For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
 
-## Quét và gom
+# Garden the codebase
 
-1. Chọn một kiểu footgun có thể nhận biết từ code hoặc PR. Ví dụ một cách dùng React khiến state bị lệch. Chỉ định khu vực cần quét và chỉ ra một mẫu đúng để so.
-2. Lượt quét đầu thêm phát hiện vào buffer. Mỗi hàng có file hoặc commit, dấu hiệu, hành vi/rủi ro, giả thuyết nguyên nhân và mức chắc chắn. Gộp trùng theo pattern, giữ các đường dẫn gốc đủ để kiểm tra lại. Tách sự cố cần xử lý ngay theo quy trình sẵn có của dự án.
-3. Đọc buffer sau một lô quét hoặc theo nhịp đội đã chọn. Nhóm theo nguyên nhân và theo convention mới cần có. Kiểm tra cụm bằng runtime khi có liên hệ hành vi. Đề xuất một thay đổi hệ thống cho cả cụm thay vì phân công một lần sửa cho mỗi dòng.
+## Scan and buffer
 
-## Chặn và dọn
+1. Select a recognizable footgun and scan scope. For example, look for a React pattern that repeatedly leaves state out of sync. Identify a good example for comparison.
+2. Add the first pass to a buffer with file or commit, symptom, observable consequence, suspected cause and confidence. Group duplicates while preserving evidence. Handle urgent incidents through the repository's incident process.
+3. Review a batch on the team's cadence. Cluster cases by root cause and the standard they need. Use runtime evidence for behavior-related clusters. Prefer a systemic fix that covers the cluster.
 
-- Chặn lỗi mới bằng đường chuẩn, type, lint hay CI theo `agent-friendly-codebase`. Nếu có nhiều vi phạm cũ, giới hạn rule vào lỗi mới khi repo hỗ trợ.
-- Dọn mẫu xấu có sức lan truyền trước. Dùng codemod đã kiểm thử cho thay đổi lặp, và kiểm tra đường hành vi cũ. Sửa ví dụ, test fixture hay comment đang hướng agent tới workaround nếu chúng góp phần vào lỗi.
-- Ghi lại rule nào bảo vệ pattern, còn bao nhiêu nơi cũ và trường hợp cần phán đoán. Cập nhật buffer theo thay đổi đã kiểm chứng. Chỉ thiết lập routine tự động khi người dùng yêu cầu và host có quyền.
+## Prevent and clean up
 
-Bàn giao danh sách cụm, một ví dụ thật và hướng xử lý cụ thể ở cấp môi trường cho từng cụm ưu tiên. [Nguồn và timestamp](../../research/evidence.md#gardening).
+- Stop new instances through a canonical path, types, lint or CI. Use [agent-friendly-codebase](../agent-friendly-codebase/SKILL.md) to choose the layer. Where supported, scope a rule to new violations while existing cases are migrated.
+- Clean up the precedents most likely to spread. Use a tested codemod for deterministic changes and recheck existing behavior. Fix examples, fixtures or workaround notes that are contributing to repetition.
+- Record the enforcing rule, remaining cases and exceptions that need judgment. Update the buffer with verified work. Set up a standing routine only within the scope the user authorized.
+
+Deliver the clusters, one genuine example per priority cluster and a specific environment-level fix. [Timestamped evidence](../../research/en/evidence.md#gardening).
