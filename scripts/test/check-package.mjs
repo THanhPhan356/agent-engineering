@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse } from 'yaml'
+import { checkMarkdownLinks } from './markdown-links.mjs'
 
 const root = fileURLToPath(new URL('../..', import.meta.url))
 
@@ -83,4 +84,5 @@ function checkSkills() {
 
 checkManifests()
 const skillCount = checkSkills()
-console.log(`Checked ${skillCount} bilingual skills, four host manifests and two marketplaces.`)
+const linkCount = checkMarkdownLinks(root)
+console.log(`Checked ${skillCount} bilingual skills, four host manifests, two marketplaces and ${linkCount} local links.`)

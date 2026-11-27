@@ -27,4 +27,4 @@ Each skill follows the [Agent Skills specification](https://agentskills.io/speci
 
 Use the same name for the skill directory and its `name` field. In the English `SKILL.md`, state when an agent should use the skill in the `description` field. Link directly to `references/vi.md` for Vietnamese requests. Update both readme indexes when you add a skill.
 
-The package check reads the skill frontmatter, checks the translation links, and verifies that the host manifests and marketplace entries describe the same package. See the commands in [Contributing](../CONTRIBUTING.md).
+The package check reads skill frontmatter, verifies that the host manifests and marketplace entries describe the same package, and catches broken local file and heading links in the READMEs, contributor docs and skills. The link check follows the packaging practice in [reshif/pstack](https://github.com/reshif/pstack#layout). See the commands in [Contributing](../CONTRIBUTING.md).

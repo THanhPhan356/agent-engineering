@@ -10,7 +10,7 @@ From a local checkout or the installed plugin directory, run `npm ci --prefix sc
 
 ## Lint the CLI
 
-ESLint supports Node.js 20.19+ in the 20.x line, 22.13+ in the 22.x line, and Node.js 24 or later. From the checkout root, run `npm ci --prefix scripts` and `npm --prefix scripts run lint`. ESLint checks the CLI and smoke scripts for issues such as undeclared names and unused variables. CI runs it before the browser tests. The `boundaries` check enforces project-specific TypeScript import paths, including imports through a barrel.
+ESLint supports Node.js 20.19+ in the 20.x line, 22.13+ in the 22.x line, and Node.js 24 or later. From the checkout root, run `npm ci --prefix scripts` and `npm --prefix scripts run lint`. The [ESLint config](eslint.config.mjs) enables rules such as undeclared names and unused variables for the repo's JavaScript. Use the [boundary checker](boundaries.mjs) to enforce your own project's TypeScript import rules.
 
 ## Verify a web journey
 

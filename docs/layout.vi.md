@@ -27,4 +27,4 @@ Mỗi skill theo [đặc tả Agent Skills](https://agentskills.io/specification
 
 Đặt tên thư mục trùng với trường `name` của skill. Trong `SKILL.md` tiếng Anh, viết rõ khi nào nên gọi skill trong trường `description`. Dẫn thẳng tới `references/vi.md` cho yêu cầu tiếng Việt. Khi thêm skill, cập nhật danh mục ở cả hai README.
 
-Bài kiểm tra gói đọc thông tin đầu tệp skill, kiểm tra liên kết bản dịch, rồi đối chiếu manifest và mục cài đặt của cùng gói. Xem lệnh chạy trong [hướng dẫn đóng góp](../CONTRIBUTING.md).
+Bài kiểm tra gói đọc thông tin đầu tệp skill, đối chiếu manifest với mục cài đặt và phát hiện link hỏng đến tệp hay đề mục trong README, tài liệu đóng góp và skill. Phần kiểm tra link tham khảo cách đóng gói của [reshif/pstack](https://github.com/reshif/pstack#layout). Xem lệnh chạy trong [hướng dẫn đóng góp](../CONTRIBUTING.md).
