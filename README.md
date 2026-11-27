@@ -6,7 +6,7 @@
 
 Eleven engineering skills and a shared executable CLI for building verification loops, improving agent-facing codebases, and deciding when to expand autonomy. The workflows draw on three public Lauren Tan videos. This independent implementation links back to [Lauren's pstack project](https://github.com/cursor/plugins/tree/main/pstack).
 
-[Install](#install) · [Choose a skill](#choose-a-skill) · [CLI](#run-the-tools) · [Repository layout](docs/layout.md) · [Contributing](CONTRIBUTING.md)
+[Install](#install) · [Choose a skill](#choose-a-skill) · [CLI](#run-the-tools) · [CI and artifacts](#ci-and-artifacts) · [Repository layout](docs/layout.md) · [Contributing](CONTRIBUTING.md)
 
 ## Install
 
@@ -46,11 +46,29 @@ Try `verification-harness` with “Reproduce the checkout flow and save a before
 - `list` validates a feature map and lists its scenarios.
 - `verify` drives a real web journey and records a report, screenshot and trace. CPU profiles, heap snapshots and video are optional.
 - `compare` compares measurements from matching baseline and candidate scenarios.
-- `boundaries` checks TypeScript runtime dependencies, including paths through intermediate modules.
+- `boundaries` catches disallowed TypeScript runtime imports, including paths through intermediate modules. [Source](scripts/boundaries.mjs) · [Example config](scripts/examples/boundaries.json)
 
-The scripts need Node.js 20 or later. Install the pinned dependencies in a local checkout or the plugin directory before running browser verification or TypeScript checks. [CLI setup and examples](scripts/README.md)
+With Node.js 20 or later, you can list the scenarios in the sample feature map from the repository root.
 
-The repository's [smoke tests](scripts/README.md#run-the-verification-smoke-tests) save screenshots, traces and JSON for both the broken and working checkout. The **Verification evidence** workflow links the bundle from its GitHub Actions job summary.
+```sh
+node scripts/agent-engineering.mjs list scripts/examples/feature-map.json
+```
+
+Install the pinned dependencies before running browser verification or TypeScript checks. [CLI setup and examples](scripts/README.md)
+
+## CI and artifacts
+
+**Verification evidence** runs on pull requests and pushes to `main`. The Chromium smoke tests reproduce a checkout failure, verify the fix and check the TypeScript import boundary. Open a successful run and download **agent-engineering-evidence** under **Artifacts** for screenshots, Playwright traces, JSON reports and a summary with the tested commit. [Workflow runs](https://github.com/THanhPhan356/agent-engineering/actions/workflows/evidence.yml) · [Example run on main](https://github.com/THanhPhan356/agent-engineering/actions/runs/45978860947)
+
+Run the package and lint checks locally with Node.js 22.13 or newer in the 22.x line, or Node.js 24 or later.
+
+```sh
+npm ci --prefix scripts
+npm --prefix scripts run check:package
+npm --prefix scripts run lint
+```
+
+`check:package` checks skill metadata, host manifests, marketplace entries and local Markdown links. ESLint checks the repository's JavaScript. [Package checker](scripts/test/check-package.mjs) · [ESLint config](scripts/eslint.config.mjs) · [Run the smoke tests locally](scripts/README.md#run-the-verification-smoke-tests)
 
 ## Evidence
 
