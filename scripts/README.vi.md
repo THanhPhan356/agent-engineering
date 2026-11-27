@@ -6,7 +6,11 @@ Chạy bằng Node.js 20 trở lên. Repo đang kiểm tra giữ cấu hình, fi
 
 ## Cài dependency cho một bản sao mới
 
-Từ thư mục plugin, chạy `npm ci --prefix scripts`. Dùng Chromium của Playwright sau khi chạy `node scripts/node_modules/playwright/cli.js install chromium` hoặc truyền `--channel msedge` hay `--channel chrome` cho browser đã cài. Nếu muốn quay video, chạy `node scripts/node_modules/playwright/cli.js install ffmpeg` một lần. Lệnh `list` và `compare` chạy với Node.js thuần.
+Từ thư mục plugin, chạy `npm ci --prefix scripts --omit=dev`. Dùng Chromium của Playwright sau khi chạy `node scripts/node_modules/playwright/cli.js install chromium` hoặc truyền `--channel msedge` hay `--channel chrome` cho browser đã cài. Nếu muốn quay video, chạy `node scripts/node_modules/playwright/cli.js install ffmpeg` một lần. Lệnh `list` và `compare` chạy với Node.js thuần.
+
+## Kiểm tra lint cho CLI
+
+ESLint hỗ trợ Node.js từ 20.19 trong dòng 20.x, từ 22.13 trong dòng 22.x, hoặc Node.js 24 trở lên. Từ gốc repo, chạy `npm ci --prefix scripts` rồi `npm --prefix scripts run lint`. ESLint kiểm tra mã CLI và smoke test để phát hiện biến chưa khai báo hoặc biến không dùng. CI chạy lint trước bài thử trình duyệt. Lệnh `boundaries` kiểm tra các ranh giới import TypeScript của từng dự án, kể cả qua barrel.
 
 ## Kiểm chứng một luồng web
 
