@@ -6,7 +6,7 @@
 
 Bộ 11 skill và CLI để xây vòng tự kiểm chứng, đặt ràng buộc trong codebase và quyết định khi nào có đủ bằng chứng để mở rộng quyền tự chủ. Các quy trình được chắt lọc từ ba video công khai của Lauren Tan. [pstack của Lauren](https://github.com/cursor/plugins/tree/main/pstack)
 
-[Cài đặt](#cài-đặt) · [Chọn skill](#chọn-skill) · [CLI](#cli-cho-agent) · [Cấu trúc repo](docs/layout.vi.md) · [Đóng góp](CONTRIBUTING.md)
+[Cài đặt](#cài-đặt) · [Chọn skill](#chọn-skill) · [CLI](#cli-cho-agent) · [CI và bằng chứng](#ci-và-bằng-chứng) · [Cấu trúc repo](docs/layout.vi.md) · [Đóng góp](CONTRIBUTING.md)
 
 ## Cài đặt
 
@@ -41,13 +41,32 @@ Thử gọi `verification-harness` theo cú pháp trong bảng với yêu cầu 
 
 ## CLI cho agent
 
-- `list` và `verify` đọc feature map, chạy luồng thật bằng Playwright và lưu kết quả, screenshot, trace. Có thể thu CPU profile, heap snapshot và video.
+- `list` kiểm tra feature map và liệt kê các kịch bản.
+- `verify` chạy luồng thật bằng Playwright và lưu báo cáo, ảnh chụp và trace. Có thể thu thêm CPU profile, heap snapshot và video.
 - `compare` đối chiếu timing baseline và candidate của cùng kịch bản.
-- `boundaries` kiểm tra import runtime trực tiếp và qua các module trung gian trong dự án TypeScript.
+- `boundaries` phát hiện import runtime vi phạm ranh giới TypeScript, kể cả qua module trung gian. [Mã kiểm tra](scripts/boundaries.mjs) · [Cấu hình mẫu](scripts/examples/boundaries.json)
 
-[Cách chạy và cấu hình mẫu](scripts/README.vi.md)
+Với Node.js 20 trở lên, chạy từ thư mục gốc để xem các kịch bản trong feature map mẫu.
 
-[Smoke test của repo](scripts/README.vi.md#chạy-smoke-test-và-lấy-bằng-chứng) lưu ảnh, trace và JSON cho cả checkout lỗi lẫn checkout đã sửa. Workflow **Verification evidence** dẫn tới gói đó từ phần tóm tắt trên GitHub Actions.
+```sh
+node scripts/agent-engineering.mjs list scripts/examples/feature-map.json
+```
+
+Cài các dependency theo hướng dẫn trước khi chạy kiểm chứng bằng trình duyệt hoặc kiểm tra TypeScript. [Cách chạy CLI và cấu hình mẫu](scripts/README.vi.md)
+
+## CI và bằng chứng
+
+Workflow **Verification evidence** chạy khi mở hoặc cập nhật PR và khi push vào `main`. Smoke test trên Chromium tái hiện lỗi checkout, kiểm chứng bản sửa và thử quy tắc import TypeScript. Mở lần chạy thành công, vào **Artifacts** và tải **agent-engineering-evidence** để xem ảnh chụp, Playwright trace, báo cáo JSON và commit đã thử. [Các lần chạy](https://github.com/THanhPhan356/agent-engineering/actions/workflows/evidence.yml) · [Lần chạy mẫu trên main](https://github.com/THanhPhan356/agent-engineering/actions/runs/45978860947)
+
+Để chạy kiểm tra cấu trúc plugin và lint trên máy, dùng Node.js từ 22.13 trong dòng 22.x hoặc Node.js 24 trở lên.
+
+```sh
+npm ci --prefix scripts
+npm --prefix scripts run check:package
+npm --prefix scripts run lint
+```
+
+`check:package` kiểm tra metadata của skill, manifest, mục cài đặt trong marketplace và link Markdown nội bộ. ESLint kiểm tra JavaScript của repo. [Mã kiểm tra gói](scripts/test/check-package.mjs) · [Cấu hình ESLint](scripts/eslint.config.mjs) · [Chạy smoke test trên máy](scripts/README.vi.md#chạy-smoke-test-và-lấy-bằng-chứng)
 
 ## Nguồn và cách áp dụng
 
