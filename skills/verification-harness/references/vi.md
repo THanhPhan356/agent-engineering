@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Vòng tự kiểm chứng kiểu ControlGlass
 
@@ -16,7 +16,7 @@ Giữ bản đồ cạnh CLI/skill, ưu tiên mục mà user thật có thể m�
 
 ## Chạy CLI của plugin
 
-Nếu repo chưa có harness và có thể chạy ứng dụng qua HTTP, dùng [CLI](../../scripts/agent-engineering.mjs) theo [hướng dẫn](../../scripts/README.vi.md). Lấy [feature map mẫu](../../scripts/examples/feature-map.json), thay route và selectors bằng luồng thật, rồi chạy `list` để kiểm tra bản đồ và `verify` để chạy trong browser sạch. Giữ `report.json` cùng trace và screenshot. Bật `--cpu`, `--heap` hoặc `--video` khi cần artifact tương ứng. Khi có đường kiểm chứng sẵn trong repo, dùng đường đó.
+Nếu repo chưa có harness và có thể chạy ứng dụng qua HTTP, dùng [CLI](../../../scripts/agent-engineering.mjs) theo [hướng dẫn](../../../scripts/README.vi.md). Lấy [feature map mẫu](../../../scripts/examples/feature-map.json), thay route và selectors bằng luồng thật, rồi chạy `list` để kiểm tra bản đồ và `verify` để chạy trong browser sạch. Giữ `report.json` cùng trace và screenshot. Bật `--cpu`, `--heap` hoặc `--video` khi cần artifact tương ứng. Khi có đường kiểm chứng sẵn trong repo, dùng đường đó.
 
 ## Bằng chứng
 
@@ -29,4 +29,4 @@ Nếu repo chưa có harness và có thể chạy ứng dụng qua HTTP, dùng [
 
 Trả về lệnh tái chạy, môi trường, kết quả trước/sau, artifact path, trạng thái đạt và phạm vi còn chưa thử. Nếu đang thiết kế harness, bàn giao thêm bố trí feature map và lượt chạy xác nhận CLI.
 
-[Nguồn và timestamp](../../research/evidence.md#verification).
+[Nguồn và timestamp](../../../research/evidence.md#verification).

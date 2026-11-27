@@ -3,7 +3,7 @@ name: verification-harness
 description: "Build a ControlGlass-style verification harness with a repeatable CLI, feature map, browser evidence, CPU profiles and heap snapshots. Dùng để agent tự chạy app và thu bằng chứng."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Build a ControlGlass-style verification loop
 

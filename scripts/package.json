@@ -6,6 +6,7 @@
     "node": ">=20"
   },
   "scripts": {
+    "check:package": "node test/check-package.mjs",
     "lint": "eslint \"**/*.mjs\" --max-warnings 0",
     "smoke": "node test/smoke.mjs"
   },
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "eslint": "10.15.0",
-    "globals": "17.14.0"
+    "globals": "17.14.0",
+    "yaml": "2.9.1"
   }
 }

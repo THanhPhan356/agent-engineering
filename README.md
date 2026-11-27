@@ -6,6 +6,8 @@
 
 Eleven engineering skills and a shared executable CLI for building verification loops, improving agent-facing codebases, and deciding when to expand autonomy. The workflows draw on three public Lauren Tan videos. This independent implementation links back to [Lauren's pstack project](https://github.com/cursor/plugins/tree/main/pstack).
 
+[Install](#install) · [Choose a skill](#choose-a-skill) · [CLI](#run-the-tools) · [Repository layout](docs/layout.md) · [Contributing](CONTRIBUTING.md)
+
 ## Install
 
 Choose the host you use. All four hosts load the same skills. English is the default, and requests in Vietnamese use the corresponding Vietnamese instructions.
@@ -20,6 +22,8 @@ Choose the host you use. All four hosts load the same skills. English is the def
 For a local checkout, pass the checkout path to the marketplace, Antigravity or Gemini CLI install command. Claude Code also accepts `claude --plugin-dir <checkout>` for session testing. [Codex](https://developers.openai.com/plugins/build/plugins) · [Claude Code](https://code.claude.com/docs/en/plugins/create-marketplace) · [Antigravity](https://antigravity.google/docs/plugins) · [Gemini CLI](https://geminicli.com/docs/extensions/)
 
 If Antigravity on Windows reports `Access is denied` when installing from a Git checkout, export the plugin with `git archive --format=zip -o <path-to-zip> HEAD`, extract it into a fresh folder, and pass that folder to `agy plugin install`.
+
+Try `verification-harness` with “Reproduce the checkout flow and save a before-and-after trace.” Use the invocation style for your host from the table.
 
 ## Choose a skill
 

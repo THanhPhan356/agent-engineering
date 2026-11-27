@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Chọn playbook
 
@@ -15,4 +15,4 @@ Xác định điều người dùng thực sự muốn, đã biết gì về cod
 
 Tách từng phần kỹ thuật ổn định thành lệnh hoặc codemod dùng lại khi hữu ích. Giữ phần cần phán đoán trong playbook. Không đưa vào skill chi tiết triển khai dễ lỗi thời khi agent có thể tìm từ code. Khi nhóm đã có một cách chuẩn, làm theo cách đó.
 
-Bàn giao thay đổi, lệnh và bằng chứng, phần chưa xác minh, cùng quyết định còn cần người dùng. Lauren mô tả nhóm playbook trong video. Các bước chi tiết ở bảng là phần triển khai ngắn gọn đối chiếu với tài liệu pstack công khai. [Nguồn và timestamp](../../research/evidence.md#playbooks).
+Bàn giao thay đổi, lệnh và bằng chứng, phần chưa xác minh, cùng quyết định còn cần người dùng. Lauren mô tả nhóm playbook trong video. Các bước chi tiết ở bảng là phần triển khai ngắn gọn đối chiếu với tài liệu pstack công khai. [Nguồn và timestamp](../../../research/evidence.md#playbooks).

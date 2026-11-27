@@ -3,7 +3,7 @@ name: recall-and-distill
 description: "Recover working context and distill recurring corrections from chats, PRs and code into a guardrail, CLI or small reusable skill. Dùng để lấy lại ngữ cảnh và rút skill từ corrections."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Recall and distill corrections
 

@@ -23,6 +23,8 @@ jobs:
           cache-dependency-path: scripts/package-lock.json
       - name: Install dependencies
         run: npm ci --prefix scripts
+      - name: Check the plugin package layout
+        run: npm --prefix scripts run check:package
       - name: Lint the CLI and smoke tests
         run: npm --prefix scripts run lint
       - name: Install Chromium

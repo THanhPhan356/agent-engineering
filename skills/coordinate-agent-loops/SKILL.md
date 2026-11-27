@@ -3,7 +3,7 @@ name: coordinate-agent-loops
 description: "Connect event intake to coordinator and coding agents with the outer and inner loops, assigning ownership and producing verified artifacts. Dùng để nối outer loop, coordinator và inner loop."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Coordinate outer and inner loops
 

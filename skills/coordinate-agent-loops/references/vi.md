@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Điều phối outer loop và inner loop
 
@@ -18,4 +18,4 @@
 
 Phân vai bot dữ liệu, kỹ thuật, cá nhân hoặc chuyên môn theo cách đội làm việc. Đặt bot kỹ thuật vào nơi nhóm đang phối hợp. Giữ nguồn cá nhân trong phạm vi phù hợp. Ghi owner/manager, người có quyền quyết định và hoạt động đã được phép. Giữ dấu vết handoff và câu trả lời của các bot. Kế hoạch hạn quyền và phối hợp tuần tự là chuyển thể Codex từ ví dụ Grok Bot, Cursor Projects và việc hỏi bot dữ liệu trong thread.
 
-Bàn giao trigger, nguồn được phép, sơ đồ chuyển giao, người chịu trách nhiệm, evidence và điều kiện chuyển cho người. [Nguồn và timestamp](../../research/evidence.md#orchestration).
+Bàn giao trigger, nguồn được phép, sơ đồ chuyển giao, người chịu trách nhiệm, evidence và điều kiện chuyển cho người. [Nguồn và timestamp](../../../research/evidence.md#orchestration).

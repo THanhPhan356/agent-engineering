@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Khi nào cần formal verification
 
@@ -9,4 +9,4 @@ Thử phép đo hoặc kiểm tra runtime nếu nó bao phủ quyết định c�
 3. Chạy checker hoặc proof. Giữ counterexample và đường đi ngắn có thể hiểu được, sau đó tìm cách tái hiện trong triển khai. Báo rõ tool, giới hạn khám phá hoặc giả định chứng minh, phiên bản mã và kết quả thực tế. Nếu không chạy được, trả mô hình dự kiến và ghi trạng thái chưa kiểm chứng.
 4. Nối invariant với test runtime hoặc check của repo để phát hiện drift giữa mô hình và mã. Giữ người có quyền quyết định trong các thay đổi khó hoàn tác.
 
-Quy trình trên là cách áp dụng cho Codex. Các nguồn đưa Lean/TLA+ như ví dụ và nói về hướng kết hợp code với proof. Chúng chưa đưa ra lời giải chung cho thay đổi hệ trọng hoặc một chứng minh production cụ thể. [Nguồn và timestamp](../../research/evidence.md#formal).
+Quy trình trên là cách áp dụng cho Codex. Các nguồn đưa Lean/TLA+ như ví dụ và nói về hướng kết hợp code với proof. Chúng chưa đưa ra lời giải chung cho thay đổi hệ trọng hoặc một chứng minh production cụ thể. [Nguồn và timestamp](../../../research/evidence.md#formal).

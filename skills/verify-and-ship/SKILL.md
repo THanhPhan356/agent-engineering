@@ -3,7 +3,7 @@ name: verify-and-ship
 description: "Verify a candidate, use independent reviewers selectively, assess one-way doors, and sample shipped PRs. Dùng để review, chuẩn bị merge và audit sau merge."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Verify, review and ship
 

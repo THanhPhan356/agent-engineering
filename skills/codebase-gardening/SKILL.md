@@ -3,7 +3,7 @@ name: codebase-gardening
 description: "Scan for recurring codebase footguns, buffer findings, group root causes, prevent growth and clean up examples agents copy. Dùng để gom và xử lý anti-pattern lặp lại."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Garden the codebase
 

@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Agent Engineering
 
@@ -21,16 +21,16 @@ Dùng Work Skill này khi cần áp dụng cách Lauren xây môi trường đ�
 
 | Nút thắt | Skill dùng |
 |---|---|
-| Agent không tự điều khiển được app hoặc đọc báo cáo thiếu bối cảnh | [verification-harness](../verification-harness/SKILL.vi.md) |
-| Thấy giật, chậm, leak hoặc muốn cải thiện metric | [performance-hillclimb](../performance-hillclimb/SKILL.vi.md) |
-| Cần kiểm tra invariant qua nhiều trạng thái, retry hoặc tương tác | [formal-verification](../formal-verification/SKILL.vi.md) |
-| Cần fix, feature, prototype hoặc refactor có bằng chứng | [engineering-playbooks](../engineering-playbooks/SKILL.vi.md) |
-| Trượt cùng một quy tắc khi sửa app | [agent-friendly-codebase](../agent-friendly-codebase/SKILL.vi.md) |
-| Nhiều dấu hiệu cùng họ, chưa biết có chung nguyên nhân | [codebase-gardening](../codebase-gardening/SKILL.vi.md) |
-| Mất bối cảnh khi đổi phiên hoặc người dùng cứ sửa cùng một lỗi | [recall-and-distill](../recall-and-distill/SKILL.vi.md) |
-| Con người còn sao chép các báo cáo giữa công cụ và coding agent | [coordinate-agent-loops](../coordinate-agent-loops/SKILL.vi.md) |
-| Cần audit, dùng verifier độc lập hoặc đánh giá việc có nên tự merge | [verify-and-ship](../verify-and-ship/SKILL.vi.md) |
-| PM, designer và engineer cần chốt sản phẩm dựa trên bản chạy được | [product-iteration](../product-iteration/SKILL.vi.md) |
+| Agent không tự điều khiển được app hoặc đọc báo cáo thiếu bối cảnh | [verification-harness](../../verification-harness/references/vi.md) |
+| Thấy giật, chậm, leak hoặc muốn cải thiện metric | [performance-hillclimb](../../performance-hillclimb/references/vi.md) |
+| Cần kiểm tra invariant qua nhiều trạng thái, retry hoặc tương tác | [formal-verification](../../formal-verification/references/vi.md) |
+| Cần fix, feature, prototype hoặc refactor có bằng chứng | [engineering-playbooks](../../engineering-playbooks/references/vi.md) |
+| Trượt cùng một quy tắc khi sửa app | [agent-friendly-codebase](../../agent-friendly-codebase/references/vi.md) |
+| Nhiều dấu hiệu cùng họ, chưa biết có chung nguyên nhân | [codebase-gardening](../../codebase-gardening/references/vi.md) |
+| Mất bối cảnh khi đổi phiên hoặc người dùng cứ sửa cùng một lỗi | [recall-and-distill](../../recall-and-distill/references/vi.md) |
+| Con người còn sao chép các báo cáo giữa công cụ và coding agent | [coordinate-agent-loops](../../coordinate-agent-loops/references/vi.md) |
+| Cần audit, dùng verifier độc lập hoặc đánh giá việc có nên tự merge | [verify-and-ship](../../verify-and-ship/references/vi.md) |
+| PM, designer và engineer cần chốt sản phẩm dựa trên bản chạy được | [product-iteration](../../product-iteration/references/vi.md) |
 
 ## Evidence and limitations
 
@@ -39,7 +39,7 @@ Dùng Work Skill này khi cần áp dụng cách Lauren xây môi trường đ�
 - **Honest boundaries.** Các ví dụ ControlGlass, Dune nội bộ và quy trình Grok Bot không cho ta toàn bộ cách triển khai. Không dự báo throughput từ số PR Lauren tự báo.
 - **Intellectual genealogy.** AutoResearch gợi ý hill climb. Netflix gợi ý trao context. GStack gợi ý xây bộ công cụ cá nhân. Matt Pocock đóng góp ví dụ về phrasing và các skill ghép được.
 
-[Ma trận timestamp](../../research/evidence.md) · [Nhận định](../../research/appraisal.md)
+[Ma trận timestamp](../../../research/evidence.md) · [Nhận định](../../../research/appraisal.md)
 
 - [Bài nói gốc của Lauren](https://x.com/poteto/status/2102050467505430555)
 - [Video cùng Matt Pocock](https://www.youtube.com/watch?v=MN9dGgmLyso)

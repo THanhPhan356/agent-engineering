@@ -3,7 +3,7 @@ name: performance-hillclimb
 description: "Improve performance with an empirical hill-climb loop: choose a metric, trace, establish a baseline, change one variable, and remeasure. Dùng để tối ưu theo baseline và trace."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Hill climb with evidence
 

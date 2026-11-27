@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Recall và chắt lọc corrections
 
@@ -15,4 +15,4 @@
 3. Viết skill theo mục đích, trigger, đầu vào, các bước và bằng chứng đầu ra. Dùng từ có nghĩa cụ thể trong domain, giữ các bước thay vì nhồi cách triển khai. Dùng một tình huống cũ và một tình huống ngoài phạm vi để kiểm tra skill có cải thiện hành vi và phân tuyến đúng.
 4. Xóa phần giải thích agent đã xử lý đúng nếu bằng chứng cho thấy nó dư thừa. Ghép kỹ năng từ nguồn khác khi nó phục vụ từng giai đoạn. Lauren nêu Wayfinder của Matt Pocock như một lựa chọn bổ sung cho Poteto Mode. Giữ nguồn của từng phần.
 
-Bàn giao brief hoặc bảng correction → nguyên nhân → cách xử lý → bằng chứng kiểm tra, tùy yêu cầu. [Nguồn và timestamp](../../research/evidence.md#recall).
+Bàn giao brief hoặc bảng correction → nguyên nhân → cách xử lý → bằng chứng kiểm tra, tùy yêu cầu. [Nguồn và timestamp](../../../research/evidence.md#recall).
