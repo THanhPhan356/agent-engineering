@@ -3,7 +3,7 @@ name: engineering-workflow
 description: "Apply Lauren Tan's engineering workflow: build a minimal verification loop, improve the environment, and choose what to do before expanding autonomy. Dùng để tìm vòng verification và điểm nghẽn trong repo."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Agent Engineering
 

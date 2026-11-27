@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Gardening cho codebase
 
@@ -14,4 +14,4 @@
 - Dọn mẫu xấu có sức lan truyền trước. Dùng codemod đã kiểm thử cho thay đổi lặp, và kiểm tra đường hành vi cũ. Sửa ví dụ, test fixture hay comment đang hướng agent tới workaround nếu chúng góp phần vào lỗi.
 - Ghi lại rule nào bảo vệ pattern, còn bao nhiêu nơi cũ và trường hợp cần phán đoán. Cập nhật buffer theo thay đổi đã kiểm chứng. Chỉ thiết lập routine tự động khi người dùng yêu cầu và host có quyền.
 
-Bàn giao danh sách cụm, một ví dụ thật và hướng xử lý cụ thể ở cấp môi trường cho từng cụm ưu tiên. [Nguồn và timestamp](../../research/evidence.md#gardening).
+Bàn giao danh sách cụm, một ví dụ thật và hướng xử lý cụ thể ở cấp môi trường cho từng cụm ưu tiên. [Nguồn và timestamp](../../../research/evidence.md#gardening).

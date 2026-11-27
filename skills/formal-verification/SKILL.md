@@ -3,7 +3,7 @@ name: formal-verification
 description: "Check a targeted invariant for retries, state machines, or concurrency when runtime examples leave important states uncovered. Dùng để kiểm chứng invariant khó bao phủ bằng test."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Choose a formal check when it earns its cost
 

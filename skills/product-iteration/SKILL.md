@@ -3,7 +3,7 @@ name: product-iteration
 description: "Run a shared product feedback loop with a working prototype, screenshots or video, and explicit human ownership of UX decisions. Dùng để lặp feature dựa trên demo cho cả nhóm."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Iterate on a feature together
 

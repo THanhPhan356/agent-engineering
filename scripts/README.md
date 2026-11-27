@@ -6,7 +6,11 @@ The CLI requires Node.js 20 or later. The target repository supplies the feature
 
 ## Install dependencies
 
-From a local checkout or the installed plugin directory, run `npm ci --prefix scripts`. For browser automation, either run `node scripts/node_modules/playwright/cli.js install chromium` or pass `--channel msedge` or `--channel chrome` to use an installed browser. For video recording, run `node scripts/node_modules/playwright/cli.js install ffmpeg` once. `list` and `compare` only require Node.js.
+From a local checkout or the installed plugin directory, run `npm ci --prefix scripts --omit=dev`. For browser automation, either run `node scripts/node_modules/playwright/cli.js install chromium` or pass `--channel msedge` or `--channel chrome` to use an installed browser. For video recording, run `node scripts/node_modules/playwright/cli.js install ffmpeg` once. `list` and `compare` only require Node.js.
+
+## Lint the CLI
+
+ESLint supports Node.js 20.19+ in the 20.x line, 22.13+ in the 22.x line, and Node.js 24 or later. From the checkout root, run `npm ci --prefix scripts` and `npm --prefix scripts run lint`. The [ESLint config](eslint.config.mjs) enables rules such as undeclared names and unused variables for the repo's JavaScript. Use the [boundary checker](boundaries.mjs) to enforce your own project's TypeScript import rules.
 
 ## Verify a web journey
 
@@ -19,6 +23,14 @@ node "$cli" verify .agent-engineering/feature-map.json checkout --base-url http:
 ```
 
 Each run gets a new browser context and writes a screenshot and trace. The command writes one `report.json` for the run set. Add `--heap` for a final heap snapshot or `--video` for a WebM. Supported actions are `click`, `fill`, `press`, `expectVisible` and `expectText`. The last matches a case-sensitive substring in a visible element. Use test data because artifacts can contain rendered content.
+
+The default browser timeout is 8,000 ms per operation. Use `--timeout-ms 30000` for a slower app and record the change when comparing runs.
+
+## Run the verification smoke tests
+
+From the plugin checkout, install dependencies as above and run `npm --prefix scripts run smoke -- --out /absolute/path/to/new-evidence-folder`. To use an installed Edge on Windows, add `--channel msedge`. The suite serves a local checkout fixture, runs the same assertion with and without the defect, and checks a TypeScript dependency boundary. It leaves `summary.md`, screenshots, Playwright traces and JSON reports in the output folder.
+
+On GitHub, open **Checks → Verification evidence** and follow the evidence link in the job summary. Download the bundle and open a trace with `node scripts/node_modules/playwright/cli.js show-trace /path/to/trace.zip`. [Playwright Trace Viewer](https://playwright.dev/docs/trace-viewer)
 
 ## Compare performance
 

@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Hill climb theo bằng chứng
 
@@ -10,6 +10,6 @@
 
 Bàn giao metric, câu hỏi người dùng, baseline và kết quả cuối, độ dao động hoặc giới hạn số lần đo, trace trước/sau và sổ từng thử nghiệm. Phân biệt cải thiện microbenchmark với trải nghiệm end-to-end. Giữ một thay đổi có thể quy kết cho mỗi lượt đo.
 
-Với một feature map web, chạy [CLI](../../scripts/README.vi.md) `verify --runs 5` trên baseline và candidate cùng cấu hình. Ưu tiên `performance.measure` có tên nếu app đã ghi metric. `compare` đọc hai `report.json`, đối chiếu kịch bản và runtime đã ghi, rồi trả median, độ lệch tuyệt đối trung vị và verdict. Đọc trace và các guardrail correctness trước khi giữ thay đổi.
+Với một feature map web, chạy [CLI](../../../scripts/README.vi.md) `verify --runs 5` trên baseline và candidate cùng cấu hình. Ưu tiên `performance.measure` có tên nếu app đã ghi metric. `compare` đọc hai `report.json`, đối chiếu kịch bản và runtime đã ghi, rồi trả median, độ lệch tuyệt đối trung vị và verdict. Đọc trace và các guardrail correctness trước khi giữ thay đổi.
 
-Cách ghi baseline và ngân sách là triển khai Codex của nguyên lý loop có điểm số. Trong nguồn, Lauren nói cô lấy cảm hứng từ AutoResearch của Andrej Karpathy cho vòng hill climb. [Nguồn và timestamp](../../research/evidence.md#performance).
+Cách ghi baseline và ngân sách là triển khai Codex của nguyên lý loop có điểm số. Trong nguồn, Lauren nói cô lấy cảm hứng từ AutoResearch của Andrej Karpathy cho vòng hill climb. [Nguồn và timestamp](../../../research/evidence.md#performance).

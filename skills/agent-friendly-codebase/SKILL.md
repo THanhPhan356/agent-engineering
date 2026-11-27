@@ -3,7 +3,7 @@ name: agent-friendly-codebase
 description: "Turn recurring agent mistakes into one paved path backed by boundaries, types, static analysis and CI. Dùng để thiết kế codebase dễ sửa đúng cho agent."
 ---
 
-For requests in Vietnamese, follow the [Vietnamese instructions](SKILL.vi.md). Use the requested language for the response.
+For requests in Vietnamese, follow the [Vietnamese instructions](references/vi.md). Use the requested language for the response.
 
 # Make the easiest path correct
 

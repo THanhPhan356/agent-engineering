@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Xác minh, review và ship
 
@@ -14,4 +14,6 @@
 
 Lấy mẫu commit/PR qua các nhóm rủi ro và loại thay đổi, kiểm tra cả artifact lẫn code khi cần. Nếu có phát hiện, đánh giá rollback hay sửa theo cơ chế dự án. Nếu lỗi lặp qua nhiều PR, nâng lên lint, invariant, harness hoặc cập nhật skill. Mức lấy mẫu, cửa dừng và yêu cầu xác minh đúng candidate là triển khai cho Codex.
 
-Bàn giao trạng thái kiểm tra, commit đã thử, evidence, finding còn mở, mức rủi ro và người quyết định kế tiếp. [Nguồn và timestamp](../../research/evidence.md#release).
+Bàn giao trạng thái kiểm tra, commit đã thử, evidence, finding còn mở, mức rủi ro và người quyết định kế tiếp. [Nguồn và timestamp](../../../research/evidence.md#release).
+
+Với thay đổi có hành vi quan sát được, lưu bằng chứng ở chỗ reviewer còn mở được sau khi kết thúc phiên hoặc CI. Dẫn tới ảnh, trace hoặc báo cáo có thật, nêu phiên bản đã thử và ghi rõ artifact còn thiếu. Khi kiểm tra CLI của repo này, dùng [smoke test và hướng dẫn lấy bằng chứng](../../../scripts/README.vi.md#chạy-smoke-test-và-lấy-bằng-chứng).

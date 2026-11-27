@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Lặp feature trong một nơi chung
 
@@ -8,4 +8,4 @@
 4. Đánh giá thay đổi theo mục tiêu và sự nhất quán của sản phẩm. Khi chạm luồng cốt lõi hoặc thói quen người dùng, có người duyệt sản phẩm và thời gian thử phù hợp trước khi ship. Tách sửa bug nhỏ đã tái hiện khỏi quyết định thay đổi UX. Không dùng việc agent hoàn thành được để quyết định phát hành.
 5. Chốt bằng bản demo, acceptance đã kiểm chứng, quyết định UX, đường dẫn issue/PR nếu có và phần cần tiếp tục. Giữ quan sát phiên bản sau phản hồi để có thể so trước/sau.
 
-Lauren minh họa bằng một feature hoàn thành trong thread Slack dài khoảng 200 tin nhắn với đồng nghiệp và PM, trong khi agent VM gửi screenshot/video. Dogfooding cụ thể của nhóm do Roman Ugarte mô tả. Lauren bổ sung vai trò của taste và việc thiết kế có chủ đích. [Nguồn và timestamp](../../research/evidence.md#product).
+Lauren minh họa bằng một feature hoàn thành trong thread Slack dài khoảng 200 tin nhắn với đồng nghiệp và PM, trong khi agent VM gửi screenshot/video. Dogfooding cụ thể của nhóm do Roman Ugarte mô tả. Lauren bổ sung vai trò của taste và việc thiết kế có chủ đích. [Nguồn và timestamp](../../../research/evidence.md#product).

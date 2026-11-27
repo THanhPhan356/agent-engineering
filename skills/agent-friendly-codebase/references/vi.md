@@ -1,4 +1,4 @@
-[English](SKILL.md) · Tiếng Việt
+[English](../SKILL.md) · Tiếng Việt
 
 # Làm cho đường dễ nhất là đường đúng
 
@@ -11,6 +11,6 @@
 
 Lauren mô tả feature co-location, route React, transcript card, host trong VM và client như các khối có ranh giới rõ. Đồ thị phụ thuộc/CI ngăn import không hợp lệ giữa Electron main và renderer, giữ phần việc nặng khỏi render path. Khung frame khoảng 16 ms ở 60 Hz và 8 ms ở 120 Hz là động cơ thiết kế. Checker import không đo thời gian chạy, nên đo giật bằng trace. Dune cấm comment vì workaround được ghi cạnh code đã bị sao chép và lan rộng. Áp dụng bài học về nguồn dẫn dắt và chỗ đặt invariant theo convention repo hiện tại.
 
-Với repo TypeScript chưa có checker, lấy [config mẫu](../../scripts/examples/boundaries.json), đặt bản sao cạnh `tsconfig.json` hoặc điều chỉnh đường dẫn, và chạy [lệnh boundaries](../../scripts/README.vi.md). Kiểm tra một import trực tiếp, một đường qua barrel và một import hợp lệ. Đọc chuỗi phụ thuộc trả về để sửa tại đường chuẩn.
+Với repo TypeScript chưa có checker, lấy [config mẫu](../../../scripts/examples/boundaries.json), đặt bản sao cạnh `tsconfig.json` hoặc điều chỉnh đường dẫn, và chạy [lệnh boundaries](../../../scripts/README.vi.md). Kiểm tra một import trực tiếp, một đường qua barrel và một import hợp lệ. Đọc chuỗi phụ thuộc trả về để sửa tại đường chuẩn.
 
-Bàn giao lỗi nguồn, lớp xử lý, đường chuẩn, lệnh kiểm tra và kết quả hai trường hợp đúng/sai. [Nguồn và timestamp](../../research/evidence.md#environment).
+Bàn giao lỗi nguồn, lớp xử lý, đường chuẩn, lệnh kiểm tra và kết quả hai trường hợp đúng/sai. [Nguồn và timestamp](../../../research/evidence.md#environment).

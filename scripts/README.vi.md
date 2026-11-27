@@ -6,7 +6,11 @@ Chạy bằng Node.js 20 trở lên. Repo đang kiểm tra giữ cấu hình, fi
 
 ## Cài dependency cho một bản sao mới
 
-Từ thư mục plugin, chạy `npm ci --prefix scripts`. Dùng Chromium của Playwright sau khi chạy `node scripts/node_modules/playwright/cli.js install chromium` hoặc truyền `--channel msedge` hay `--channel chrome` cho browser đã cài. Nếu muốn quay video, chạy `node scripts/node_modules/playwright/cli.js install ffmpeg` một lần. Lệnh `list` và `compare` chạy với Node.js thuần.
+Từ thư mục plugin, chạy `npm ci --prefix scripts --omit=dev`. Dùng Chromium của Playwright sau khi chạy `node scripts/node_modules/playwright/cli.js install chromium` hoặc truyền `--channel msedge` hay `--channel chrome` cho browser đã cài. Nếu muốn quay video, chạy `node scripts/node_modules/playwright/cli.js install ffmpeg` một lần. Lệnh `list` và `compare` chạy với Node.js thuần.
+
+## Kiểm tra lint cho CLI
+
+ESLint hỗ trợ Node.js từ 20.19 trong dòng 20.x, từ 22.13 trong dòng 22.x, hoặc Node.js 24 trở lên. Từ gốc repo, chạy `npm ci --prefix scripts` rồi `npm --prefix scripts run lint`. [Cấu hình ESLint](eslint.config.mjs) bật các quy tắc như phát hiện biến chưa khai báo và biến không dùng trong mã JavaScript của repo. Dùng [bộ kiểm tra boundaries](boundaries.mjs) để áp dụng luật import TypeScript cho dự án của bạn.
 
 ## Kiểm chứng một luồng web
 
@@ -19,6 +23,14 @@ node $cli verify .agent-engineering/feature-map.json checkout --base-url http://
 ```
 
 Mỗi lượt dùng context mới và lưu `report.json`, ảnh cuối cùng và trace. Thêm `--heap` để lấy heap cuối lượt, hoặc `--video` để ghi WebM. Các bước hỗ trợ click, fill, press, expectVisible và expectText. `expectText` tìm đoạn văn bản phân biệt hoa thường trong phần tử hiển thị. Chỉ dùng dữ liệu thử trong kịch bản vì trace và video có thể chứa dữ liệu hiển thị.
+
+Mặc định mỗi thao tác trong trình duyệt chờ tối đa 8.000 ms. Dùng `--timeout-ms 30000` nếu ứng dụng tải chậm và ghi lại cấu hình khi so sánh hai lượt.
+
+## Chạy smoke test và lấy bằng chứng
+
+Sau khi cài dependency, chạy `npm --prefix scripts run smoke -- --out <đường-dẫn-tuyệt-đối-tới-thư-mục-mới>`. Nếu dùng Edge đã cài trên Windows, thêm `--channel msedge`. Bài thử dùng checkout trên localhost, chạy cùng một assertion ở trạng thái lỗi và trạng thái đã sửa, rồi kiểm tra ranh giới import TypeScript. Thư mục đầu ra giữ `summary.md`, ảnh, trace Playwright và báo cáo JSON.
+
+Trên GitHub, vào **Checks → Verification evidence** và lấy gói bằng chứng từ link trong phần tóm tắt của job. Mở trace bằng `node scripts/node_modules/playwright/cli.js show-trace <đường-dẫn-trace.zip>`. [Playwright Trace Viewer](https://playwright.dev/docs/trace-viewer)
 
 ## So hiệu năng
 
